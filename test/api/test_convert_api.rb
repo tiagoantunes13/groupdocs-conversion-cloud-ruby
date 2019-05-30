@@ -1,6 +1,6 @@
 #
 # --------------------------------------------------------------------------------------------------------------------
-# <copyright company="Aspose Pty Ltd" file="test_auth_api.rb">
+# <copyright company="Aspose Pty Ltd">
 #    Copyright (c) 2003-2019 Aspose Pty Ltd
 # </copyright>
 # <summary>
@@ -26,50 +26,37 @@
 #
 
 module GroupDocsConversionCloud
-  
-  require "minitest/autorun"
-  require "minitest/unit"
 
   require_relative './../../lib/groupdocs_conversion_cloud'
-  require_relative '../test_settings'
+  require_relative './../test_context'
+  require_relative './../test_file'
 
-  class TestAuthApi < Minitest::Test
+  class TestConvertApi < TestContext
     
-    def init_conversion_api(app_sid, app_key)
-      config = Configuration.new(app_sid, app_key)
-      config.api_base_url = TestSettings::API_BASE_URL
+    def test_convert_document      
+      settings = ConvertSettings.new 
+      settings.file_path = file = TestFile.four_pages_docx.path
+      settings.format = "pdf"
+      settings.output_path = "converted"
+      settings.convert_options = ConvertOptions.new
+      request = ConvertDocumentRequest.new settings
       
-      InfoApi.from_config(config)
+      response = @convert_api.convert_document(request)
+
+      assert_operator response.size, :>, 0  
+      assert_operator response[0].size, :>, 0
     end
 
-    # unit tests to check auth error
-    def test_auth_error_when_app_sid_not_found
-      app_sid = "test"
-      app_key = "test"
+    def test_convert_document_download
+      settings = ConvertSettings.new 
+      settings.file_path = file = TestFile.four_pages_docx.path
+      settings.format = "pdf"      
+      settings.convert_options = ConvertOptions.new
+      request = ConvertDocumentRequest.new settings
+      
+      response = @convert_api.convert_document(request)
 
-      info_api = init_conversion_api(app_sid, app_key)
-      request = GetSupportedConversionTypesRequest.new
-
-      error = assert_raises ApiError do
-        info_api.get_supported_conversion_types(request)
-      end
-
-      assert_equal "invalid_client", error.message
-    end
-
-    # unit tests to check auth error
-    def test_auth_error_when_app_key_not_found
-      app_sid = TestSettings::APP_SID
-      app_key = "test"
-
-      info_api = init_conversion_api(app_sid, app_key)
-      request = GetSupportedConversionTypesRequest.new
-
-      error = assert_raises ApiError do
-        info_api.get_supported_conversion_types(request)
-      end
-
-      assert_equal "invalid_client", error.message
+      assert_operator response.length, :>, 0  
     end
 
   end

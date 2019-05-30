@@ -12,7 +12,7 @@ gem install groupdocs_conversion_cloud
 To add dependency to your app copy following into your Gemfile and run `bundle install`:
 
 ```
-gem "groupdocs_conversion_cloud", "~> 19.4"
+gem "groupdocs_conversion_cloud", "~> 19.5"
 ```
 
 ## Getting Started
@@ -27,7 +27,7 @@ app_sid = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 app_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 # Create instance of the API class
-api = GroupDocsConversionCloud::ConversionApi.from_keys(app_sid, app_key)
+api = GroupDocsConversionCloud::InfoApi.from_keys(app_sid, app_key)
 
 # Retrieve supported converison types
 request = GroupDocsConversionCloud::GetSupportedConversionTypesRequest.new

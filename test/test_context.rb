@@ -47,7 +47,8 @@ module GroupDocsConversionCloud
         config.api_base_url = TestSettings::API_BASE_URL
         #config.debugging = true
 
-        @conversion_api = ConversionApi.from_config(config)   
+        @convert_api = ConvertApi.from_config(config)   
+        @info_api = InfoApi.from_config(config)
         @storage_api = StorageApi.from_config(config)   
         @folder_api = FolderApi.from_config(config)   
         @file_api = FileApi.from_config(config)   

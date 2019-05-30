@@ -64,6 +64,18 @@ module GroupDocsConversionCloud
     # Watermark specific options
     attr_accessor :watermark_options
 
+    # Adjust image brightness
+    attr_accessor :brightness
+
+    # Adjust image contrast
+    attr_accessor :contrast
+
+    # Adjust image gamma
+    attr_accessor :gamma
+
+    # Image flip mode
+    attr_accessor :flip_mode
+
     # Set Tiff compression
     attr_accessor :compression
     class EnumAttributeValidator
@@ -102,6 +114,10 @@ module GroupDocsConversionCloud
         :'rotate_angle' => :'RotateAngle',
         :'use_pdf' => :'UsePdf',
         :'watermark_options' => :'WatermarkOptions',
+        :'brightness' => :'Brightness',
+        :'contrast' => :'Contrast',
+        :'gamma' => :'Gamma',
+        :'flip_mode' => :'FlipMode',
         :'compression' => :'Compression'
       }
     end
@@ -120,6 +136,10 @@ module GroupDocsConversionCloud
         :'rotate_angle' => :'Integer',
         :'use_pdf' => :'BOOLEAN',
         :'watermark_options' => :'WatermarkOptions',
+        :'brightness' => :'Integer',
+        :'contrast' => :'Integer',
+        :'gamma' => :'Float',
+        :'flip_mode' => :'String',
         :'compression' => :'String'
       }
     end
@@ -178,6 +198,22 @@ module GroupDocsConversionCloud
         self.watermark_options = attributes[:'WatermarkOptions']
       end
 
+      if attributes.key?(:'Brightness')
+        self.brightness = attributes[:'Brightness']
+      end
+
+      if attributes.key?(:'Contrast')
+        self.contrast = attributes[:'Contrast']
+      end
+
+      if attributes.key?(:'Gamma')
+        self.gamma = attributes[:'Gamma']
+      end
+
+      if attributes.key?(:'FlipMode')
+        self.flip_mode = attributes[:'FlipMode']
+      end
+
       if attributes.key?(:'Compression')
         self.compression = attributes[:'Compression']
       end
@@ -224,6 +260,22 @@ module GroupDocsConversionCloud
         invalid_properties.push("invalid value for 'use_pdf', use_pdf cannot be nil.")
       end
 
+      if @brightness.nil?
+        invalid_properties.push("invalid value for 'brightness', brightness cannot be nil.")
+      end
+
+      if @contrast.nil?
+        invalid_properties.push("invalid value for 'contrast', contrast cannot be nil.")
+      end
+
+      if @gamma.nil?
+        invalid_properties.push("invalid value for 'gamma', gamma cannot be nil.")
+      end
+
+      if @flip_mode.nil?
+        invalid_properties.push("invalid value for 'flip_mode', flip_mode cannot be nil.")
+      end
+
       return invalid_properties
     end
 
@@ -239,9 +291,29 @@ module GroupDocsConversionCloud
       return false if @grayscale.nil?
       return false if @rotate_angle.nil?
       return false if @use_pdf.nil?
+      return false if @brightness.nil?
+      return false if @contrast.nil?
+      return false if @gamma.nil?
+      return false if @flip_mode.nil?
+      flip_mode_validator = EnumAttributeValidator.new('String', ["None", "FlipX", "FlipY", "FlipXY"])
+      return false unless flip_mode_validator.valid?(@flip_mode)
       compression_validator = EnumAttributeValidator.new('String', ["Lzw", "None", "Ccitt3", "Ccitt4", "Rle"])
       return false unless compression_validator.valid?(@compression)
       return true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] flip_mode Object to be assigned
+    def flip_mode=(flip_mode)
+      validator = EnumAttributeValidator.new('String', ["None", "FlipX", "FlipY", "FlipXY"])
+      if flip_mode.to_i == 0
+        unless validator.valid?(flip_mode)
+          raise ArgumentError, "invalid value for 'flip_mode', must be one of #{validator.allowable_values}."
+        end
+        @flip_mode = flip_mode
+      else
+        @flip_mode = validator.allowable_values[flip_mode.to_i]
+      end
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -274,6 +346,10 @@ module GroupDocsConversionCloud
           rotate_angle == other.rotate_angle &&
           use_pdf == other.use_pdf &&
           watermark_options == other.watermark_options &&
+          brightness == other.brightness &&
+          contrast == other.contrast &&
+          gamma == other.gamma &&
+          flip_mode == other.flip_mode &&
           compression == other.compression
     end
 
@@ -286,7 +362,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [from_page, pages_count, pages, width, height, horizontal_resolution, vertical_resolution, grayscale, rotate_angle, use_pdf, watermark_options, compression].hash
+      [from_page, pages_count, pages, width, height, horizontal_resolution, vertical_resolution, grayscale, rotate_angle, use_pdf, watermark_options, brightness, contrast, gamma, flip_mode, compression].hash
     end
 
     # Downcases first letter.

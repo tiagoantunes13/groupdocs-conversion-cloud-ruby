@@ -1,6 +1,6 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
- # <copyright company="Aspose Pty Ltd" file="cgm_convert_options.rb">
+ # <copyright company="Aspose Pty Ltd" file="document_metadata.rb">
  #   Copyright (c) 2003-2019 Aspose Pty Ltd
  # </copyright>
  # <summary>
@@ -28,114 +28,88 @@
 require 'date'
 
 module GroupDocsConversionCloud
-  # Cgm convert options
-  class CgmConvertOptions
+  # Contains a document metadata 
+  class DocumentMetadata
 
-    # Start conversion from FromPage page
-    attr_accessor :from_page
+    # Document file type
+    attr_accessor :file_type
 
-    # Number of pages to convert
-    attr_accessor :pages_count
+    # Gets pages count if applicable to the current document format
+    attr_accessor :page_count
 
-    # Convert specific pages. The list contains the page indexes of the pages to be converted
-    attr_accessor :pages
+    # Document bytes size
+    attr_accessor :size
 
-    # Desired image width after conversion
+    # Returns detected width if applicable to the current document format
     attr_accessor :width
 
-    # Desired image height after conversion
+    # Returns detected height if applicable to the current document format
     attr_accessor :height
 
-    # Desired image horizontal resolution after conversion. The default resolution is the resolution of the input file or 96dpi
+    # Returns detected horizontal resolution if applicable to the current document format
     attr_accessor :horizontal_resolution
 
-    # Desired image vertical resolution after conversion. The default resolution is the resolution of the input file or 96dpi
+    # Returns detected vertical resolution if applicable to the current document format
     attr_accessor :vertical_resolution
 
-    # Convert to grayscale image
-    attr_accessor :grayscale
+    # Returns detected bits per pixel if applicable to the current document format
+    attr_accessor :bits_per_pixel
 
-    # Image rotation angle 
-    attr_accessor :rotate_angle
+    # Returns document title width if applicable to the current document format
+    attr_accessor :title
 
-    # If true, the input firstly is converted to PDF and after that to desired format
-    attr_accessor :use_pdf
+    # Returns detected document author if applicable to the current document format
+    attr_accessor :author
 
-    # Watermark specific options
-    attr_accessor :watermark_options
+    # Returns detected document creation date if it's applicable to the current document format
+    attr_accessor :created_date
 
-    # Adjust image brightness
-    attr_accessor :brightness
+    # Returns detected document modification date if applicable to the current document format
+    attr_accessor :modified_date
 
-    # Adjust image contrast
-    attr_accessor :contrast
+    # Returns list of layer names if applicable to the current document format
+    attr_accessor :layers
 
-    # Adjust image gamma
-    attr_accessor :gamma
-
-    # Image flip mode
-    attr_accessor :flip_mode
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    # Is document password protected
+    attr_accessor :is_password_protected
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'from_page' => :'FromPage',
-        :'pages_count' => :'PagesCount',
-        :'pages' => :'Pages',
+        :'file_type' => :'FileType',
+        :'page_count' => :'PageCount',
+        :'size' => :'Size',
         :'width' => :'Width',
         :'height' => :'Height',
         :'horizontal_resolution' => :'HorizontalResolution',
         :'vertical_resolution' => :'VerticalResolution',
-        :'grayscale' => :'Grayscale',
-        :'rotate_angle' => :'RotateAngle',
-        :'use_pdf' => :'UsePdf',
-        :'watermark_options' => :'WatermarkOptions',
-        :'brightness' => :'Brightness',
-        :'contrast' => :'Contrast',
-        :'gamma' => :'Gamma',
-        :'flip_mode' => :'FlipMode'
+        :'bits_per_pixel' => :'BitsPerPixel',
+        :'title' => :'Title',
+        :'author' => :'Author',
+        :'created_date' => :'CreatedDate',
+        :'modified_date' => :'ModifiedDate',
+        :'layers' => :'Layers',
+        :'is_password_protected' => :'IsPasswordProtected'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'from_page' => :'Integer',
-        :'pages_count' => :'Integer',
-        :'pages' => :'Array<Integer>',
+        :'file_type' => :'String',
+        :'page_count' => :'Integer',
+        :'size' => :'Integer',
         :'width' => :'Integer',
         :'height' => :'Integer',
         :'horizontal_resolution' => :'Integer',
         :'vertical_resolution' => :'Integer',
-        :'grayscale' => :'BOOLEAN',
-        :'rotate_angle' => :'Integer',
-        :'use_pdf' => :'BOOLEAN',
-        :'watermark_options' => :'WatermarkOptions',
-        :'brightness' => :'Integer',
-        :'contrast' => :'Integer',
-        :'gamma' => :'Float',
-        :'flip_mode' => :'String'
+        :'bits_per_pixel' => :'Integer',
+        :'title' => :'String',
+        :'author' => :'String',
+        :'created_date' => :'DateTime',
+        :'modified_date' => :'DateTime',
+        :'layers' => :'Array<String>',
+        :'is_password_protected' => :'BOOLEAN'
       }
     end
 
@@ -147,18 +121,16 @@ module GroupDocsConversionCloud
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.key?(:'FromPage')
-        self.from_page = attributes[:'FromPage']
+      if attributes.key?(:'FileType')
+        self.file_type = attributes[:'FileType']
       end
 
-      if attributes.key?(:'PagesCount')
-        self.pages_count = attributes[:'PagesCount']
+      if attributes.key?(:'PageCount')
+        self.page_count = attributes[:'PageCount']
       end
 
-      if attributes.key?(:'Pages')
-        if (value = attributes[:'Pages']).is_a?(Array)
-          self.pages = value
-        end
+      if attributes.key?(:'Size')
+        self.size = attributes[:'Size']
       end
 
       if attributes.key?(:'Width')
@@ -177,36 +149,34 @@ module GroupDocsConversionCloud
         self.vertical_resolution = attributes[:'VerticalResolution']
       end
 
-      if attributes.key?(:'Grayscale')
-        self.grayscale = attributes[:'Grayscale']
+      if attributes.key?(:'BitsPerPixel')
+        self.bits_per_pixel = attributes[:'BitsPerPixel']
       end
 
-      if attributes.key?(:'RotateAngle')
-        self.rotate_angle = attributes[:'RotateAngle']
+      if attributes.key?(:'Title')
+        self.title = attributes[:'Title']
       end
 
-      if attributes.key?(:'UsePdf')
-        self.use_pdf = attributes[:'UsePdf']
+      if attributes.key?(:'Author')
+        self.author = attributes[:'Author']
       end
 
-      if attributes.key?(:'WatermarkOptions')
-        self.watermark_options = attributes[:'WatermarkOptions']
+      if attributes.key?(:'CreatedDate')
+        self.created_date = attributes[:'CreatedDate']
       end
 
-      if attributes.key?(:'Brightness')
-        self.brightness = attributes[:'Brightness']
+      if attributes.key?(:'ModifiedDate')
+        self.modified_date = attributes[:'ModifiedDate']
       end
 
-      if attributes.key?(:'Contrast')
-        self.contrast = attributes[:'Contrast']
+      if attributes.key?(:'Layers')
+        if (value = attributes[:'Layers']).is_a?(Array)
+          self.layers = value
+        end
       end
 
-      if attributes.key?(:'Gamma')
-        self.gamma = attributes[:'Gamma']
-      end
-
-      if attributes.key?(:'FlipMode')
-        self.flip_mode = attributes[:'FlipMode']
+      if attributes.key?(:'IsPasswordProtected')
+        self.is_password_protected = attributes[:'IsPasswordProtected']
       end
 
     end
@@ -215,12 +185,12 @@ module GroupDocsConversionCloud
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = []
-      if @from_page.nil?
-        invalid_properties.push("invalid value for 'from_page', from_page cannot be nil.")
+      if @page_count.nil?
+        invalid_properties.push("invalid value for 'page_count', page_count cannot be nil.")
       end
 
-      if @pages_count.nil?
-        invalid_properties.push("invalid value for 'pages_count', pages_count cannot be nil.")
+      if @size.nil?
+        invalid_properties.push("invalid value for 'size', size cannot be nil.")
       end
 
       if @width.nil?
@@ -239,32 +209,20 @@ module GroupDocsConversionCloud
         invalid_properties.push("invalid value for 'vertical_resolution', vertical_resolution cannot be nil.")
       end
 
-      if @grayscale.nil?
-        invalid_properties.push("invalid value for 'grayscale', grayscale cannot be nil.")
+      if @bits_per_pixel.nil?
+        invalid_properties.push("invalid value for 'bits_per_pixel', bits_per_pixel cannot be nil.")
       end
 
-      if @rotate_angle.nil?
-        invalid_properties.push("invalid value for 'rotate_angle', rotate_angle cannot be nil.")
+      if @created_date.nil?
+        invalid_properties.push("invalid value for 'created_date', created_date cannot be nil.")
       end
 
-      if @use_pdf.nil?
-        invalid_properties.push("invalid value for 'use_pdf', use_pdf cannot be nil.")
+      if @modified_date.nil?
+        invalid_properties.push("invalid value for 'modified_date', modified_date cannot be nil.")
       end
 
-      if @brightness.nil?
-        invalid_properties.push("invalid value for 'brightness', brightness cannot be nil.")
-      end
-
-      if @contrast.nil?
-        invalid_properties.push("invalid value for 'contrast', contrast cannot be nil.")
-      end
-
-      if @gamma.nil?
-        invalid_properties.push("invalid value for 'gamma', gamma cannot be nil.")
-      end
-
-      if @flip_mode.nil?
-        invalid_properties.push("invalid value for 'flip_mode', flip_mode cannot be nil.")
+      if @is_password_protected.nil?
+        invalid_properties.push("invalid value for 'is_password_protected', is_password_protected cannot be nil.")
       end
 
       return invalid_properties
@@ -273,36 +231,17 @@ module GroupDocsConversionCloud
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @from_page.nil?
-      return false if @pages_count.nil?
+      return false if @page_count.nil?
+      return false if @size.nil?
       return false if @width.nil?
       return false if @height.nil?
       return false if @horizontal_resolution.nil?
       return false if @vertical_resolution.nil?
-      return false if @grayscale.nil?
-      return false if @rotate_angle.nil?
-      return false if @use_pdf.nil?
-      return false if @brightness.nil?
-      return false if @contrast.nil?
-      return false if @gamma.nil?
-      return false if @flip_mode.nil?
-      flip_mode_validator = EnumAttributeValidator.new('String', ["None", "FlipX", "FlipY", "FlipXY"])
-      return false unless flip_mode_validator.valid?(@flip_mode)
+      return false if @bits_per_pixel.nil?
+      return false if @created_date.nil?
+      return false if @modified_date.nil?
+      return false if @is_password_protected.nil?
       return true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] flip_mode Object to be assigned
-    def flip_mode=(flip_mode)
-      validator = EnumAttributeValidator.new('String', ["None", "FlipX", "FlipY", "FlipXY"])
-      if flip_mode.to_i == 0
-        unless validator.valid?(flip_mode)
-          raise ArgumentError, "invalid value for 'flip_mode', must be one of #{validator.allowable_values}."
-        end
-        @flip_mode = flip_mode
-      else
-        @flip_mode = validator.allowable_values[flip_mode.to_i]
-      end
     end
 
     # Checks equality by comparing each attribute.
@@ -310,21 +249,20 @@ module GroupDocsConversionCloud
     def ==(other)
       return true if self.equal?(other)
       self.class == other.class &&
-          from_page == other.from_page &&
-          pages_count == other.pages_count &&
-          pages == other.pages &&
+          file_type == other.file_type &&
+          page_count == other.page_count &&
+          size == other.size &&
           width == other.width &&
           height == other.height &&
           horizontal_resolution == other.horizontal_resolution &&
           vertical_resolution == other.vertical_resolution &&
-          grayscale == other.grayscale &&
-          rotate_angle == other.rotate_angle &&
-          use_pdf == other.use_pdf &&
-          watermark_options == other.watermark_options &&
-          brightness == other.brightness &&
-          contrast == other.contrast &&
-          gamma == other.gamma &&
-          flip_mode == other.flip_mode
+          bits_per_pixel == other.bits_per_pixel &&
+          title == other.title &&
+          author == other.author &&
+          created_date == other.created_date &&
+          modified_date == other.modified_date &&
+          layers == other.layers &&
+          is_password_protected == other.is_password_protected
     end
 
     # @see the `==` method
@@ -336,7 +274,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [from_page, pages_count, pages, width, height, horizontal_resolution, vertical_resolution, grayscale, rotate_angle, use_pdf, watermark_options, brightness, contrast, gamma, flip_mode].hash
+      [file_type, page_count, size, width, height, horizontal_resolution, vertical_resolution, bits_per_pixel, title, author, created_date, modified_date, layers, is_password_protected].hash
     end
 
     # Downcases first letter.

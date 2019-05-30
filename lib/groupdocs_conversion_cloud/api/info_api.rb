@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose Pty Ltd" file="conversion.rb">
+# <copyright company="Aspose Pty Ltd" file="info.rb">
 #   Copyright (c) 2003-2019 Aspose Pty Ltd
 # </copyright>
 # <summary>
@@ -30,65 +30,73 @@ module GroupDocsConversionCloud
   #
   # GroupDocs.Conversion Cloud API
   #
-  class ConversionApi
+  class InfoApi
     attr_accessor :config
 
-    #make ConversionApi.new private 
+    #make InfoApi.new private 
     private_class_method :new
 
-    # Initializes new instance of ConversionApi
+    # Initializes new instance of InfoApi
     #
     # @param [config] Configuration 
-    # @return [ConversionApi] New instance of ConversionApi
+    # @return [InfoApi] New instance of InfoApi
     def initialize(config)
       @config = config
       @api_client = ApiClient.new(config)
       @access_token = nil
     end
 
-    # Initializes new instance of ConversionApi
+    # Initializes new instance of InfoApi
     #
     # @param [app_sid] Application identifier (App SID)
     # @param [app_key] Application private key (App Key)
-    # @return [ConversionApi] New instance of ConversionApi
+    # @return [InfoApi] New instance of InfoApi
     def self.from_keys(app_sid, app_key)
       config = Configuration.new(app_sid, app_key)
       return new(config)
     end
 
-    # Initializes new instance of ConversionApi
+    # Initializes new instance of InfoApi
     #
     # @param [config] Configuration 
-    # @return [ConversionApi] New instance of ConversionApi
+    # @return [InfoApi] New instance of InfoApi
     def self.from_config(config)
       return new(config)
     end
 
-    # Converts specified input document to format specified in the convertSettings with specified options
+    # Returns metadata for provided document
     # 
-    # @param request convert_document_request
-    # @return [Array<StoredConvertedResult>]
-    def convert_document(request)
-      data, _status_code, _headers = convert_document_with_http_info(request)
+    # @param request get_document_metadata_request
+    # @return [DocumentMetadata]
+    def get_document_metadata(request)
+      data, _status_code, _headers = get_document_metadata_with_http_info(request)
       data
     end
 
-    # Converts specified input document to format specified in the convertSettings with specified options
+    # Returns metadata for provided document
     # 
-    # @param request convert_document_request
-    # @return [Array<(Array<StoredConvertedResult>, Fixnum, Hash)>]
-    # Array<StoredConvertedResult> data, response status code and response headers
-    def convert_document_with_http_info(request)
-      raise ArgumentError, 'Incorrect request type' unless request.is_a? ConvertDocumentRequest
+    # @param request get_document_metadata_request
+    # @return [Array<(DocumentMetadata, Fixnum, Hash)>]
+    # DocumentMetadata data, response status code and response headers
+    def get_document_metadata_with_http_info(request)
+      raise ArgumentError, 'Incorrect request type' unless request.is_a? GetDocumentMetadataRequest
 
-      @api_client.config.logger.debug 'Calling API: ConversionApi.convert_document ...' if @api_client.config.debugging
-      # verify the required parameter 'convert_settings' is set
-      raise ArgumentError, 'Missing the required parameter convert_settings when calling ConversionApi.convert_document' if @api_client.config.client_side_validation && request.convert_settings.nil?
+      @api_client.config.logger.debug 'Calling API: InfoApi.get_document_metadata ...' if @api_client.config.debugging
       # resource path
-      local_var_path = '/conversion'
+      local_var_path = '/conversion/info'
 
       # query parameters
       query_params = {}
+      if local_var_path.include? ('{' + downcase_first_letter('FilePath') + '}')
+        local_var_path = local_var_path.sub('{' + downcase_first_letter('FilePath') + '}', request.file_path.to_s)
+      else
+        query_params[downcase_first_letter('FilePath')] = request.file_path unless request.file_path.nil?
+      end
+      if local_var_path.include? ('{' + downcase_first_letter('StorageName') + '}')
+        local_var_path = local_var_path.sub('{' + downcase_first_letter('StorageName') + '}', request.storage_name.to_s)
+      else
+        query_params[downcase_first_letter('StorageName')] = request.storage_name unless request.storage_name.nil?
+      end
 
       # header parameters
       header_params = {}
@@ -101,21 +109,20 @@ module GroupDocsConversionCloud
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(request.convert_settings)
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+      post_body = nil
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
                                                         header_params: header_params,
                                                         query_params: query_params,
                                                         form_params: form_params,
                                                         body: post_body,
                                                         access_token: get_access_token,
-                                                        return_type: if request.convert_settings.output_path.nil? then 'File' else 'Array<StoredConvertedResult>' end)
+                                                        return_type: 'DocumentMetadata')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called:
-        ConversionApi#convert_document\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        InfoApi#get_document_metadata\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       [data, status_code, headers]
     end
-
 
     # Returns all supported conversion types
     # 
@@ -134,7 +141,7 @@ module GroupDocsConversionCloud
     def get_supported_conversion_types_with_http_info(request)
       raise ArgumentError, 'Incorrect request type' unless request.is_a? GetSupportedConversionTypesRequest
 
-      @api_client.config.logger.debug 'Calling API: ConversionApi.get_supported_conversion_types ...' if @api_client.config.debugging
+      @api_client.config.logger.debug 'Calling API: InfoApi.get_supported_conversion_types ...' if @api_client.config.debugging
       # resource path
       local_var_path = '/conversion/formats'
 
@@ -177,7 +184,7 @@ module GroupDocsConversionCloud
                                                         return_type: 'Array<SupportedFormat>')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called:
-        ConversionApi#get_supported_conversion_types\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        InfoApi#get_supported_conversion_types\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       [data, status_code, headers]
     end
@@ -238,7 +245,7 @@ module GroupDocsConversionCloud
 end
  #
  # --------------------------------------------------------------------------------------------------------------------
- # <copyright company="Aspose Pty Ltd" file="convert_document_request.rb">
+ # <copyright company="Aspose Pty Ltd" file="get_document_metadata_request.rb">
  #   Copyright (c) 2003-2019 Aspose Pty Ltd
  # </copyright>
  # <summary>
@@ -266,18 +273,22 @@ end
 module GroupDocsConversionCloud
 
   #
-  # Request model for convert_document operation.
+  # Request model for get_document_metadata operation.
   #
-  class ConvertDocumentRequest
+  class GetDocumentMetadataRequest
 
-        # Gets or sets convert_settings
-        attr_accessor :convert_settings
+        # Absolute path to a document in the storage
+        attr_accessor :file_path
+        # StorageName which contains the document
+        attr_accessor :storage_name
 	
         #
         # Initializes a new instance.
-        # @param convert_settings 
-        def initialize(convert_settings)
-           self.convert_settings = convert_settings
+        # @param file_path Absolute path to a document in the storage
+        # @param storage_name StorageName which contains the document
+        def initialize(file_path = nil, storage_name = nil)
+           self.file_path = file_path
+           self.storage_name = storage_name
         end
   end
 end

@@ -31,12 +31,12 @@ module GroupDocsConversionCloud
   require_relative './../test_context'
   require_relative './../test_file'
 
-  class TestConversionApi < TestContext
+  class TestInfoApi < TestContext
     
     def test_get_supported_conversion_types
       request = GetSupportedConversionTypesRequest.new
       
-      response = @conversion_api.get_supported_conversion_types(request)
+      response = @info_api.get_supported_conversion_types(request)
 
       assert_operator response.size, :>, 0  
       response.each do |format|
@@ -45,30 +45,12 @@ module GroupDocsConversionCloud
       end
     end
 
-    def test_convert_document      
-      settings = ConvertSettings.new 
-      settings.file_path = file = TestFile.four_pages_docx.path
-      settings.format = "pdf"
-      settings.output_path = "converted"
-      settings.convert_options = ConvertOptions.new
-      request = ConvertDocumentRequest.new settings
+    def test_get_document_metadata
+      request = GetDocumentMetadataRequest.new TestFile.four_pages_docx.path
       
-      response = @conversion_api.convert_document(request)
+      response = @info_api.get_document_metadata(request)
 
-      assert_operator response.size, :>, 0  
-      assert_operator response[0].size, :>, 0
-    end
-
-    def test_convert_document_download
-      settings = ConvertSettings.new 
-      settings.file_path = file = TestFile.four_pages_docx.path
-      settings.format = "pdf"      
-      settings.convert_options = ConvertOptions.new
-      request = ConvertDocumentRequest.new settings
-      
-      response = @conversion_api.convert_document(request)
-
-      assert_operator response.length, :>, 0  
+      assert_equal 4, response.page_count
     end
 
   end
