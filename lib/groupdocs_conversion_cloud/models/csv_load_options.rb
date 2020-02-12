@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="csv_load_options.rb">
- #   Copyright (c) 2003-2019 Aspose Pty Ltd
+ #   Copyright (c) 2003-2020 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -46,6 +46,9 @@ module GroupDocsConversionCloud
     # Indicates whether the string in the file is converted to date. Default is True
     attr_accessor :convert_date_time_data
 
+    # File encoding
+    attr_accessor :encoding
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -53,7 +56,8 @@ module GroupDocsConversionCloud
         :'is_multi_encoded' => :'IsMultiEncoded',
         :'has_formula' => :'HasFormula',
         :'convert_numeric_data' => :'ConvertNumericData',
-        :'convert_date_time_data' => :'ConvertDateTimeData'
+        :'convert_date_time_data' => :'ConvertDateTimeData',
+        :'encoding' => :'Encoding'
       }
     end
 
@@ -64,7 +68,8 @@ module GroupDocsConversionCloud
         :'is_multi_encoded' => :'BOOLEAN',
         :'has_formula' => :'BOOLEAN',
         :'convert_numeric_data' => :'BOOLEAN',
-        :'convert_date_time_data' => :'BOOLEAN'
+        :'convert_date_time_data' => :'BOOLEAN',
+        :'encoding' => :'String'
       }
     end
 
@@ -94,6 +99,10 @@ module GroupDocsConversionCloud
 
       if attributes.key?(:'ConvertDateTimeData')
         self.convert_date_time_data = attributes[:'ConvertDateTimeData']
+      end
+
+      if attributes.key?(:'Encoding')
+        self.encoding = attributes[:'Encoding']
       end
 
     end
@@ -145,7 +154,8 @@ module GroupDocsConversionCloud
           is_multi_encoded == other.is_multi_encoded &&
           has_formula == other.has_formula &&
           convert_numeric_data == other.convert_numeric_data &&
-          convert_date_time_data == other.convert_date_time_data
+          convert_date_time_data == other.convert_date_time_data &&
+          encoding == other.encoding
     end
 
     # @see the `==` method
@@ -157,7 +167,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [separator, is_multi_encoded, has_formula, convert_numeric_data, convert_date_time_data].hash
+      [separator, is_multi_encoded, has_formula, convert_numeric_data, convert_date_time_data, encoding].hash
     end
 
     # Downcases first letter.

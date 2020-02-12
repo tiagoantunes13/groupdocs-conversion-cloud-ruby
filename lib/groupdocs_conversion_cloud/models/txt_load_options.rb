@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="txt_load_options.rb">
- #   Copyright (c) 2003-2019 Aspose Pty Ltd
+ #   Copyright (c) 2003-2020 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -39,6 +39,9 @@ module GroupDocsConversionCloud
 
     # Gets or sets preferred option of a leading space handling. Default value is ConvertToIndent.
     attr_accessor :leading_spaces_options
+
+    # Gets or sets the encoding that will be used when loading Txt document. Can be null. Default is null.
+    attr_accessor :encoding
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -66,7 +69,8 @@ module GroupDocsConversionCloud
       {
         :'detect_numbering_with_whitespaces' => :'DetectNumberingWithWhitespaces',
         :'trailing_spaces_options' => :'TrailingSpacesOptions',
-        :'leading_spaces_options' => :'LeadingSpacesOptions'
+        :'leading_spaces_options' => :'LeadingSpacesOptions',
+        :'encoding' => :'Encoding'
       }
     end
 
@@ -75,7 +79,8 @@ module GroupDocsConversionCloud
       {
         :'detect_numbering_with_whitespaces' => :'BOOLEAN',
         :'trailing_spaces_options' => :'String',
-        :'leading_spaces_options' => :'String'
+        :'leading_spaces_options' => :'String',
+        :'encoding' => :'String'
       }
     end
 
@@ -97,6 +102,10 @@ module GroupDocsConversionCloud
 
       if attributes.key?(:'LeadingSpacesOptions')
         self.leading_spaces_options = attributes[:'LeadingSpacesOptions']
+      end
+
+      if attributes.key?(:'Encoding')
+        self.encoding = attributes[:'Encoding']
       end
 
     end
@@ -168,7 +177,8 @@ module GroupDocsConversionCloud
       self.class == other.class &&
           detect_numbering_with_whitespaces == other.detect_numbering_with_whitespaces &&
           trailing_spaces_options == other.trailing_spaces_options &&
-          leading_spaces_options == other.leading_spaces_options
+          leading_spaces_options == other.leading_spaces_options &&
+          encoding == other.encoding
     end
 
     # @see the `==` method
@@ -180,7 +190,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [detect_numbering_with_whitespaces, trailing_spaces_options, leading_spaces_options].hash
+      [detect_numbering_with_whitespaces, trailing_spaces_options, leading_spaces_options, encoding].hash
     end
 
     # Downcases first letter.

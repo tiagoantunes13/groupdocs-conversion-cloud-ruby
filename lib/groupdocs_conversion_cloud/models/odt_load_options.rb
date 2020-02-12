@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="odt_load_options.rb">
- #   Copyright (c) 2003-2019 Aspose Pty Ltd
+ #   Copyright (c) 2003-2020 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -49,6 +49,15 @@ module GroupDocsConversionCloud
     # Hide comments
     attr_accessor :hide_comments
 
+    # Specifies the default level in the document outline at which to display Word bookmarks. Default is 0. Valid range is 0 to 9.
+    attr_accessor :bookmarks_outline_level
+
+    # Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the document outline. Default is 0. Valid range is 0 to 9.
+    attr_accessor :headings_outline_levels
+
+    # Specifies how many levels in the document outline to show expanded when the file is viewed. Default is 0. Valid range is 0 to 9. Note that this options will not work when saving to XPS.
+    attr_accessor :expanded_outline_levels
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -57,7 +66,10 @@ module GroupDocsConversionCloud
         :'font_substitutes' => :'FontSubstitutes',
         :'password' => :'Password',
         :'hide_word_tracked_changes' => :'HideWordTrackedChanges',
-        :'hide_comments' => :'HideComments'
+        :'hide_comments' => :'HideComments',
+        :'bookmarks_outline_level' => :'BookmarksOutlineLevel',
+        :'headings_outline_levels' => :'HeadingsOutlineLevels',
+        :'expanded_outline_levels' => :'ExpandedOutlineLevels'
       }
     end
 
@@ -69,7 +81,10 @@ module GroupDocsConversionCloud
         :'font_substitutes' => :'Hash<String, String>',
         :'password' => :'String',
         :'hide_word_tracked_changes' => :'BOOLEAN',
-        :'hide_comments' => :'BOOLEAN'
+        :'hide_comments' => :'BOOLEAN',
+        :'bookmarks_outline_level' => :'Integer',
+        :'headings_outline_levels' => :'Integer',
+        :'expanded_outline_levels' => :'Integer'
       }
     end
 
@@ -107,6 +122,18 @@ module GroupDocsConversionCloud
         self.hide_comments = attributes[:'HideComments']
       end
 
+      if attributes.key?(:'BookmarksOutlineLevel')
+        self.bookmarks_outline_level = attributes[:'BookmarksOutlineLevel']
+      end
+
+      if attributes.key?(:'HeadingsOutlineLevels')
+        self.headings_outline_levels = attributes[:'HeadingsOutlineLevels']
+      end
+
+      if attributes.key?(:'ExpandedOutlineLevels')
+        self.expanded_outline_levels = attributes[:'ExpandedOutlineLevels']
+      end
+
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -125,6 +152,18 @@ module GroupDocsConversionCloud
         invalid_properties.push("invalid value for 'hide_comments', hide_comments cannot be nil.")
       end
 
+      if @bookmarks_outline_level.nil?
+        invalid_properties.push("invalid value for 'bookmarks_outline_level', bookmarks_outline_level cannot be nil.")
+      end
+
+      if @headings_outline_levels.nil?
+        invalid_properties.push("invalid value for 'headings_outline_levels', headings_outline_levels cannot be nil.")
+      end
+
+      if @expanded_outline_levels.nil?
+        invalid_properties.push("invalid value for 'expanded_outline_levels', expanded_outline_levels cannot be nil.")
+      end
+
       return invalid_properties
     end
 
@@ -134,6 +173,9 @@ module GroupDocsConversionCloud
       return false if @auto_font_substitution.nil?
       return false if @hide_word_tracked_changes.nil?
       return false if @hide_comments.nil?
+      return false if @bookmarks_outline_level.nil?
+      return false if @headings_outline_levels.nil?
+      return false if @expanded_outline_levels.nil?
       return true
     end
 
@@ -147,7 +189,10 @@ module GroupDocsConversionCloud
           font_substitutes == other.font_substitutes &&
           password == other.password &&
           hide_word_tracked_changes == other.hide_word_tracked_changes &&
-          hide_comments == other.hide_comments
+          hide_comments == other.hide_comments &&
+          bookmarks_outline_level == other.bookmarks_outline_level &&
+          headings_outline_levels == other.headings_outline_levels &&
+          expanded_outline_levels == other.expanded_outline_levels
     end
 
     # @see the `==` method
@@ -159,7 +204,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [default_font, auto_font_substitution, font_substitutes, password, hide_word_tracked_changes, hide_comments].hash
+      [default_font, auto_font_substitution, font_substitutes, password, hide_word_tracked_changes, hide_comments, bookmarks_outline_level, headings_outline_levels, expanded_outline_levels].hash
     end
 
     # Downcases first letter.

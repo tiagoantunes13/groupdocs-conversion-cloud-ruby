@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="eml_load_options.rb">
- #   Copyright (c) 2003-2019 Aspose Pty Ltd
+ #   Copyright (c) 2003-2020 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -49,6 +49,12 @@ module GroupDocsConversionCloud
     # Option to display or hide \"Bcc\" email address. Default: false
     attr_accessor :display_bcc_email_address
 
+    # Gets or sets the Coordinated Universal Time (UTC) offset for the message dates. This property defines the time zone difference, between the localtime and UTC.
+    attr_accessor :time_zone_offset
+
+    # Option to convert attachments in source email or not. Default: false.
+    attr_accessor :convert_attachments
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -57,7 +63,9 @@ module GroupDocsConversionCloud
         :'display_email_address' => :'DisplayEmailAddress',
         :'display_to_email_address' => :'DisplayToEmailAddress',
         :'display_cc_email_address' => :'DisplayCcEmailAddress',
-        :'display_bcc_email_address' => :'DisplayBccEmailAddress'
+        :'display_bcc_email_address' => :'DisplayBccEmailAddress',
+        :'time_zone_offset' => :'TimeZoneOffset',
+        :'convert_attachments' => :'ConvertAttachments'
       }
     end
 
@@ -69,7 +77,9 @@ module GroupDocsConversionCloud
         :'display_email_address' => :'BOOLEAN',
         :'display_to_email_address' => :'BOOLEAN',
         :'display_cc_email_address' => :'BOOLEAN',
-        :'display_bcc_email_address' => :'BOOLEAN'
+        :'display_bcc_email_address' => :'BOOLEAN',
+        :'time_zone_offset' => :'String',
+        :'convert_attachments' => :'BOOLEAN'
       }
     end
 
@@ -105,6 +115,14 @@ module GroupDocsConversionCloud
         self.display_bcc_email_address = attributes[:'DisplayBccEmailAddress']
       end
 
+      if attributes.key?(:'TimeZoneOffset')
+        self.time_zone_offset = attributes[:'TimeZoneOffset']
+      end
+
+      if attributes.key?(:'ConvertAttachments')
+        self.convert_attachments = attributes[:'ConvertAttachments']
+      end
+
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -135,6 +153,10 @@ module GroupDocsConversionCloud
         invalid_properties.push("invalid value for 'display_bcc_email_address', display_bcc_email_address cannot be nil.")
       end
 
+      if @convert_attachments.nil?
+        invalid_properties.push("invalid value for 'convert_attachments', convert_attachments cannot be nil.")
+      end
+
       return invalid_properties
     end
 
@@ -147,6 +169,7 @@ module GroupDocsConversionCloud
       return false if @display_to_email_address.nil?
       return false if @display_cc_email_address.nil?
       return false if @display_bcc_email_address.nil?
+      return false if @convert_attachments.nil?
       return true
     end
 
@@ -160,7 +183,9 @@ module GroupDocsConversionCloud
           display_email_address == other.display_email_address &&
           display_to_email_address == other.display_to_email_address &&
           display_cc_email_address == other.display_cc_email_address &&
-          display_bcc_email_address == other.display_bcc_email_address
+          display_bcc_email_address == other.display_bcc_email_address &&
+          time_zone_offset == other.time_zone_offset &&
+          convert_attachments == other.convert_attachments
     end
 
     # @see the `==` method
@@ -172,7 +197,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [display_header, display_from_email_address, display_email_address, display_to_email_address, display_cc_email_address, display_bcc_email_address].hash
+      [display_header, display_from_email_address, display_email_address, display_to_email_address, display_cc_email_address, display_bcc_email_address, time_zone_offset, convert_attachments].hash
     end
 
     # Downcases first letter.

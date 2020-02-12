@@ -1,7 +1,7 @@
 #
 # --------------------------------------------------------------------------------------------------------------------
 # <copyright company="Aspose Pty Ltd" file="test_file.rb">
-#    Copyright (c) 2003-2019 Aspose Pty Ltd
+#    Copyright (c) 2003-2020 Aspose Pty Ltd
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -45,7 +45,7 @@ module GroupDocsConversionCloud
         def self.one_page_docx
             f = TestFile.new
             f.file_name = "one-page.docx"
-            f.folder = "words\\docx\\"
+            f.folder = "WordProcessing\\"
             f
         end
 
@@ -59,57 +59,15 @@ module GroupDocsConversionCloud
         def self.password_protected_docx
             f = TestFile.new
             f.file_name = "password-protected.docx"
-            f.folder = "words\\docx\\"
+            f.folder = "WordProcessing\\"
             f.password = "password"
             f
-        end
-
-        def self.two_hidden_pages_vsd
-            f = TestFile.new
-            f.file_name = "two-hidden-pages.vsd"
-            f.folder = "diagram\\vsd\\"
-            f
-        end
-
-        def self.with_hidden_rows_and_columns
-            f = TestFile.new
-            f.file_name = "with-hidden-rows-and-columns.xlsx"
-            f.folder = "cells\\xlsx\\"
-            f
         end        
-
-        def self.three_layouts_dwf
-            f = TestFile.new
-            f.file_name = "three-layouts.dwf"
-            f.folder = "cad\\dwf\\"    
-            f
-        end
-
-        def self.project_mpp
-            f = TestFile.new
-            f.file_name = "sample.mpp"
-            f.folder = "project\\mpp\\"
-            f
-        end
-
-        def self.uses_custom_font_pptx
-            f = TestFile.new
-            f.file_name = "uses-custom-font.pptx"
-            f.folder = "slides\\pptx\\"
-            f
-        end
-
-        def self.font_ttf
-            f = TestFile.new
-            f.file_name = "foo.ttf"
-            f.folder = "font\\ttf\\"
-            f
-        end
 
         def self.four_pages_docx
             f = TestFile.new
             f.file_name = "four-pages.docx"
-            f.folder = "words\\docx\\"
+            f.folder = "WordProcessing\\"
             f
         end
 
@@ -118,12 +76,6 @@ module GroupDocsConversionCloud
             [
                 self.one_page_docx,
                 self.password_protected_docx,
-                self.two_hidden_pages_vsd,
-                self.with_hidden_rows_and_columns,
-                self.three_layouts_dwf,
-                self.project_mpp,
-                self.uses_custom_font_pptx,
-                self.font_ttf,
                 self.four_pages_docx
             ]        
         end

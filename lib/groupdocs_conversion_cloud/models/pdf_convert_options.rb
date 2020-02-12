@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="pdf_convert_options.rb">
- #   Copyright (c) 2003-2019 Aspose Pty Ltd
+ #   Copyright (c) 2003-2020 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -110,7 +110,7 @@ module GroupDocsConversionCloud
     attr_accessor :fit_window
 
     # Specify whether menu bar should be hidden when document is active. Default: false.
-    attr_accessor :hide_menubar
+    attr_accessor :hide_menu_bar
 
     # Specifying whether toolbar should be hidden when document is active. Default: false.
     attr_accessor :hide_tool_bar
@@ -126,15 +126,6 @@ module GroupDocsConversionCloud
 
     # Sets page mode, specifying how document should be displayed when opened.
     attr_accessor :page_mode
-
-    # Specifies the default level in the document outline at which to display Word bookmarks. Default is 0. Valid range is 0 to 9.
-    attr_accessor :bookmarks_outline_level
-
-    # Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the document outline. Default is 0. Valid range is 0 to 9.
-    attr_accessor :headings_outline_levels
-
-    # Specifies how many levels in the document outline to show expanded when the file is viewed. Default is 0. Valid range is 0 to 9. Note that this options will not work when saving to XPS.
-    attr_accessor :expanded_outline_levels
 
     # Rotate page
     attr_accessor :rotate
@@ -192,15 +183,12 @@ module GroupDocsConversionCloud
         :'direction' => :'Direction',
         :'display_doc_title' => :'DisplayDocTitle',
         :'fit_window' => :'FitWindow',
-        :'hide_menubar' => :'HideMenubar',
+        :'hide_menu_bar' => :'HideMenuBar',
         :'hide_tool_bar' => :'HideToolBar',
         :'hide_window_ui' => :'HideWindowUI',
         :'non_full_screen_page_mode' => :'NonFullScreenPageMode',
         :'page_layout' => :'PageLayout',
         :'page_mode' => :'PageMode',
-        :'bookmarks_outline_level' => :'BookmarksOutlineLevel',
-        :'headings_outline_levels' => :'HeadingsOutlineLevels',
-        :'expanded_outline_levels' => :'ExpandedOutlineLevels',
         :'rotate' => :'Rotate',
         :'watermark_options' => :'WatermarkOptions'
       }
@@ -235,15 +223,12 @@ module GroupDocsConversionCloud
         :'direction' => :'String',
         :'display_doc_title' => :'BOOLEAN',
         :'fit_window' => :'BOOLEAN',
-        :'hide_menubar' => :'BOOLEAN',
+        :'hide_menu_bar' => :'BOOLEAN',
         :'hide_tool_bar' => :'BOOLEAN',
         :'hide_window_ui' => :'BOOLEAN',
         :'non_full_screen_page_mode' => :'String',
         :'page_layout' => :'String',
         :'page_mode' => :'String',
-        :'bookmarks_outline_level' => :'Integer',
-        :'headings_outline_levels' => :'Integer',
-        :'expanded_outline_levels' => :'Integer',
         :'rotate' => :'String',
         :'watermark_options' => :'WatermarkOptions'
       }
@@ -363,8 +348,8 @@ module GroupDocsConversionCloud
         self.fit_window = attributes[:'FitWindow']
       end
 
-      if attributes.key?(:'HideMenubar')
-        self.hide_menubar = attributes[:'HideMenubar']
+      if attributes.key?(:'HideMenuBar')
+        self.hide_menu_bar = attributes[:'HideMenuBar']
       end
 
       if attributes.key?(:'HideToolBar')
@@ -385,18 +370,6 @@ module GroupDocsConversionCloud
 
       if attributes.key?(:'PageMode')
         self.page_mode = attributes[:'PageMode']
-      end
-
-      if attributes.key?(:'BookmarksOutlineLevel')
-        self.bookmarks_outline_level = attributes[:'BookmarksOutlineLevel']
-      end
-
-      if attributes.key?(:'HeadingsOutlineLevels')
-        self.headings_outline_levels = attributes[:'HeadingsOutlineLevels']
-      end
-
-      if attributes.key?(:'ExpandedOutlineLevels')
-        self.expanded_outline_levels = attributes[:'ExpandedOutlineLevels']
       end
 
       if attributes.key?(:'Rotate')
@@ -509,8 +482,8 @@ module GroupDocsConversionCloud
         invalid_properties.push("invalid value for 'fit_window', fit_window cannot be nil.")
       end
 
-      if @hide_menubar.nil?
-        invalid_properties.push("invalid value for 'hide_menubar', hide_menubar cannot be nil.")
+      if @hide_menu_bar.nil?
+        invalid_properties.push("invalid value for 'hide_menu_bar', hide_menu_bar cannot be nil.")
       end
 
       if @hide_tool_bar.nil?
@@ -531,18 +504,6 @@ module GroupDocsConversionCloud
 
       if @page_mode.nil?
         invalid_properties.push("invalid value for 'page_mode', page_mode cannot be nil.")
-      end
-
-      if @bookmarks_outline_level.nil?
-        invalid_properties.push("invalid value for 'bookmarks_outline_level', bookmarks_outline_level cannot be nil.")
-      end
-
-      if @headings_outline_levels.nil?
-        invalid_properties.push("invalid value for 'headings_outline_levels', headings_outline_levels cannot be nil.")
-      end
-
-      if @expanded_outline_levels.nil?
-        invalid_properties.push("invalid value for 'expanded_outline_levels', expanded_outline_levels cannot be nil.")
       end
 
       if @rotate.nil?
@@ -583,7 +544,7 @@ module GroupDocsConversionCloud
       return false unless direction_validator.valid?(@direction)
       return false if @display_doc_title.nil?
       return false if @fit_window.nil?
-      return false if @hide_menubar.nil?
+      return false if @hide_menu_bar.nil?
       return false if @hide_tool_bar.nil?
       return false if @hide_window_ui.nil?
       return false if @non_full_screen_page_mode.nil?
@@ -595,9 +556,6 @@ module GroupDocsConversionCloud
       return false if @page_mode.nil?
       page_mode_validator = EnumAttributeValidator.new('String', ["UseNone", "UseOutlines", "UseThumbs", "FullScreen", "UseOC", "UseAttachments"])
       return false unless page_mode_validator.valid?(@page_mode)
-      return false if @bookmarks_outline_level.nil?
-      return false if @headings_outline_levels.nil?
-      return false if @expanded_outline_levels.nil?
       return false if @rotate.nil?
       rotate_validator = EnumAttributeValidator.new('String', ["None", "On90", "On180", "On270"])
       return false unless rotate_validator.valid?(@rotate)
@@ -719,15 +677,12 @@ module GroupDocsConversionCloud
           direction == other.direction &&
           display_doc_title == other.display_doc_title &&
           fit_window == other.fit_window &&
-          hide_menubar == other.hide_menubar &&
+          hide_menu_bar == other.hide_menu_bar &&
           hide_tool_bar == other.hide_tool_bar &&
           hide_window_ui == other.hide_window_ui &&
           non_full_screen_page_mode == other.non_full_screen_page_mode &&
           page_layout == other.page_layout &&
           page_mode == other.page_mode &&
-          bookmarks_outline_level == other.bookmarks_outline_level &&
-          headings_outline_levels == other.headings_outline_levels &&
-          expanded_outline_levels == other.expanded_outline_levels &&
           rotate == other.rotate &&
           watermark_options == other.watermark_options
     end
@@ -741,7 +696,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [from_page, pages_count, pages, width, height, dpi, password, margin_top, margin_bottom, margin_left, margin_right, pdf_format, remove_pdfa_compliance, zoom, linearize, link_duplicate_streams, remove_unused_objects, remove_unused_streams, compress_images, image_quality, unembed_fonts, grayscale, center_window, direction, display_doc_title, fit_window, hide_menubar, hide_tool_bar, hide_window_ui, non_full_screen_page_mode, page_layout, page_mode, bookmarks_outline_level, headings_outline_levels, expanded_outline_levels, rotate, watermark_options].hash
+      [from_page, pages_count, pages, width, height, dpi, password, margin_top, margin_bottom, margin_left, margin_right, pdf_format, remove_pdfa_compliance, zoom, linearize, link_duplicate_streams, remove_unused_objects, remove_unused_streams, compress_images, image_quality, unembed_fonts, grayscale, center_window, direction, display_doc_title, fit_window, hide_menu_bar, hide_tool_bar, hide_window_ui, non_full_screen_page_mode, page_layout, page_mode, rotate, watermark_options].hash
     end
 
     # Downcases first letter.
