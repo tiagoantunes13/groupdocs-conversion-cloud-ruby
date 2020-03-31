@@ -55,6 +55,12 @@ module GroupDocsConversionCloud
     # Option to convert attachments in source email or not. Default: false.
     attr_accessor :convert_attachments
 
+    # The mapping between email message field and field text representation
+    attr_accessor :field_labels
+
+    # Defines whether need to keep original date header string in mail message when saving or not (Default value is true)
+    attr_accessor :preserve_original_date
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -65,7 +71,9 @@ module GroupDocsConversionCloud
         :'display_cc_email_address' => :'DisplayCcEmailAddress',
         :'display_bcc_email_address' => :'DisplayBccEmailAddress',
         :'time_zone_offset' => :'TimeZoneOffset',
-        :'convert_attachments' => :'ConvertAttachments'
+        :'convert_attachments' => :'ConvertAttachments',
+        :'field_labels' => :'FieldLabels',
+        :'preserve_original_date' => :'PreserveOriginalDate'
       }
     end
 
@@ -79,7 +87,9 @@ module GroupDocsConversionCloud
         :'display_cc_email_address' => :'BOOLEAN',
         :'display_bcc_email_address' => :'BOOLEAN',
         :'time_zone_offset' => :'String',
-        :'convert_attachments' => :'BOOLEAN'
+        :'convert_attachments' => :'BOOLEAN',
+        :'field_labels' => :'Array<FieldLabel>',
+        :'preserve_original_date' => :'BOOLEAN'
       }
     end
 
@@ -123,6 +133,16 @@ module GroupDocsConversionCloud
         self.convert_attachments = attributes[:'ConvertAttachments']
       end
 
+      if attributes.key?(:'FieldLabels')
+        if (value = attributes[:'FieldLabels']).is_a?(Array)
+          self.field_labels = value
+        end
+      end
+
+      if attributes.key?(:'PreserveOriginalDate')
+        self.preserve_original_date = attributes[:'PreserveOriginalDate']
+      end
+
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -157,6 +177,10 @@ module GroupDocsConversionCloud
         invalid_properties.push("invalid value for 'convert_attachments', convert_attachments cannot be nil.")
       end
 
+      if @preserve_original_date.nil?
+        invalid_properties.push("invalid value for 'preserve_original_date', preserve_original_date cannot be nil.")
+      end
+
       return invalid_properties
     end
 
@@ -170,6 +194,7 @@ module GroupDocsConversionCloud
       return false if @display_cc_email_address.nil?
       return false if @display_bcc_email_address.nil?
       return false if @convert_attachments.nil?
+      return false if @preserve_original_date.nil?
       return true
     end
 
@@ -185,7 +210,9 @@ module GroupDocsConversionCloud
           display_cc_email_address == other.display_cc_email_address &&
           display_bcc_email_address == other.display_bcc_email_address &&
           time_zone_offset == other.time_zone_offset &&
-          convert_attachments == other.convert_attachments
+          convert_attachments == other.convert_attachments &&
+          field_labels == other.field_labels &&
+          preserve_original_date == other.preserve_original_date
     end
 
     # @see the `==` method
@@ -197,7 +224,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [display_header, display_from_email_address, display_email_address, display_to_email_address, display_cc_email_address, display_bcc_email_address, time_zone_offset, convert_attachments].hash
+      [display_header, display_from_email_address, display_email_address, display_to_email_address, display_cc_email_address, display_bcc_email_address, time_zone_offset, convert_attachments, field_labels, preserve_original_date].hash
     end
 
     # Downcases first letter.

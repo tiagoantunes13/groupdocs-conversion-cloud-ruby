@@ -1,6 +1,6 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
- # <copyright company="Aspose Pty Ltd" file="html_convert_options.rb">
+ # <copyright company="Aspose Pty Ltd" file="field_label.rb">
  #   Copyright (c) 2003-2020 Aspose Pty Ltd
  # </copyright>
  # <summary>
@@ -28,58 +28,49 @@
 require 'date'
 
 module GroupDocsConversionCloud
-  # Options for to Html conversion
-  class HtmlConvertOptions
+  # Represents field label 
+  class FieldLabel
 
-    # Start conversion from FromPage page
-    attr_accessor :from_page
+    # The field name
+    attr_accessor :field
 
-    # Number of pages to convert
-    attr_accessor :pages_count
+    # The label e.g. \"Sender\"
+    attr_accessor :label
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    # Convert specific pages. The list contains the page indexes of the pages to be converted
-    attr_accessor :pages
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
 
-    # If true, the input firstly is converted to PDF and after that to desired format
-    attr_accessor :use_pdf
-
-    # If true fixed layout will be used e.g. absolutely positioned html elements Default:  true
-    attr_accessor :fixed_layout
-
-    # Show page borders when converting to fixed layout. Default is True
-    attr_accessor :fixed_layout_show_borders
-
-    # Specifies the zoom level in percentage. Default is 100.
-    attr_accessor :zoom
-
-    # Watermark specific options
-    attr_accessor :watermark_options
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'from_page' => :'FromPage',
-        :'pages_count' => :'PagesCount',
-        :'pages' => :'Pages',
-        :'use_pdf' => :'UsePdf',
-        :'fixed_layout' => :'FixedLayout',
-        :'fixed_layout_show_borders' => :'FixedLayoutShowBorders',
-        :'zoom' => :'Zoom',
-        :'watermark_options' => :'WatermarkOptions'
+        :'field' => :'Field',
+        :'label' => :'Label'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'from_page' => :'Integer',
-        :'pages_count' => :'Integer',
-        :'pages' => :'Array<Integer>',
-        :'use_pdf' => :'BOOLEAN',
-        :'fixed_layout' => :'BOOLEAN',
-        :'fixed_layout_show_borders' => :'BOOLEAN',
-        :'zoom' => :'Integer',
-        :'watermark_options' => :'WatermarkOptions'
+        :'field' => :'String',
+        :'label' => :'String'
       }
     end
 
@@ -91,38 +82,12 @@ module GroupDocsConversionCloud
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.key?(:'FromPage')
-        self.from_page = attributes[:'FromPage']
+      if attributes.key?(:'Field')
+        self.field = attributes[:'Field']
       end
 
-      if attributes.key?(:'PagesCount')
-        self.pages_count = attributes[:'PagesCount']
-      end
-
-      if attributes.key?(:'Pages')
-        if (value = attributes[:'Pages']).is_a?(Array)
-          self.pages = value
-        end
-      end
-
-      if attributes.key?(:'UsePdf')
-        self.use_pdf = attributes[:'UsePdf']
-      end
-
-      if attributes.key?(:'FixedLayout')
-        self.fixed_layout = attributes[:'FixedLayout']
-      end
-
-      if attributes.key?(:'FixedLayoutShowBorders')
-        self.fixed_layout_show_borders = attributes[:'FixedLayoutShowBorders']
-      end
-
-      if attributes.key?(:'Zoom')
-        self.zoom = attributes[:'Zoom']
-      end
-
-      if attributes.key?(:'WatermarkOptions')
-        self.watermark_options = attributes[:'WatermarkOptions']
+      if attributes.key?(:'Label')
+        self.label = attributes[:'Label']
       end
 
     end
@@ -131,28 +96,8 @@ module GroupDocsConversionCloud
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = []
-      if @from_page.nil?
-        invalid_properties.push("invalid value for 'from_page', from_page cannot be nil.")
-      end
-
-      if @pages_count.nil?
-        invalid_properties.push("invalid value for 'pages_count', pages_count cannot be nil.")
-      end
-
-      if @use_pdf.nil?
-        invalid_properties.push("invalid value for 'use_pdf', use_pdf cannot be nil.")
-      end
-
-      if @fixed_layout.nil?
-        invalid_properties.push("invalid value for 'fixed_layout', fixed_layout cannot be nil.")
-      end
-
-      if @fixed_layout_show_borders.nil?
-        invalid_properties.push("invalid value for 'fixed_layout_show_borders', fixed_layout_show_borders cannot be nil.")
-      end
-
-      if @zoom.nil?
-        invalid_properties.push("invalid value for 'zoom', zoom cannot be nil.")
+      if @field.nil?
+        invalid_properties.push("invalid value for 'field', field cannot be nil.")
       end
 
       return invalid_properties
@@ -161,13 +106,24 @@ module GroupDocsConversionCloud
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @from_page.nil?
-      return false if @pages_count.nil?
-      return false if @use_pdf.nil?
-      return false if @fixed_layout.nil?
-      return false if @fixed_layout_show_borders.nil?
-      return false if @zoom.nil?
+      return false if @field.nil?
+      field_validator = EnumAttributeValidator.new('String', ["Start", "TabField", "Subject", "ShowTimeAs", "Sent", "RequiredAttendees", "RecurrencePattern", "Recurrence", "PageHeader", "Organizer", "Location", "Importance", "From", "End", "Bcc", "Attachments", "To"])
+      return false unless field_validator.valid?(@field)
       return true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] field Object to be assigned
+    def field=(field)
+      validator = EnumAttributeValidator.new('String', ["Start", "TabField", "Subject", "ShowTimeAs", "Sent", "RequiredAttendees", "RecurrencePattern", "Recurrence", "PageHeader", "Organizer", "Location", "Importance", "From", "End", "Bcc", "Attachments", "To"])
+      if field.to_i == 0
+        unless validator.valid?(field)
+          raise ArgumentError, "invalid value for 'field', must be one of #{validator.allowable_values}."
+        end
+        @field = field
+      else
+        @field = validator.allowable_values[field.to_i]
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -175,14 +131,8 @@ module GroupDocsConversionCloud
     def ==(other)
       return true if self.equal?(other)
       self.class == other.class &&
-          from_page == other.from_page &&
-          pages_count == other.pages_count &&
-          pages == other.pages &&
-          use_pdf == other.use_pdf &&
-          fixed_layout == other.fixed_layout &&
-          fixed_layout_show_borders == other.fixed_layout_show_borders &&
-          zoom == other.zoom &&
-          watermark_options == other.watermark_options
+          field == other.field &&
+          label == other.label
     end
 
     # @see the `==` method
@@ -194,7 +144,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [from_page, pages_count, pages, use_pdf, fixed_layout, fixed_layout_show_borders, zoom, watermark_options].hash
+      [field, label].hash
     end
 
     # Downcases first letter.
