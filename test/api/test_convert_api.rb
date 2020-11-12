@@ -59,5 +59,17 @@ module GroupDocsConversionCloud
       assert_operator response.length, :>, 0  
     end
 
+    def test_convert_document_direct
+      test_file = TestFile.four_pages_docx
+      format = "pdf"      
+      file = File.open(get_test_path() + test_file.path, "r")
+
+      request = ConvertDocumentDirectRequest.new format, file
+      
+      response = @convert_api.convert_document_direct(request)
+
+      assert_operator response.length, :>, 0  
+    end    
+
   end
 end

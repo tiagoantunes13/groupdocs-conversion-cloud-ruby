@@ -12,7 +12,7 @@ gem install groupdocs_conversion_cloud
 To add dependency to your app copy following into your Gemfile and run `bundle install`:
 
 ```
-gem "groupdocs_conversion_cloud", "~> 20.3"
+gem "groupdocs_conversion_cloud", "~> 20.11"
 ```
 
 ## Getting Started
@@ -42,4 +42,12 @@ puts("#{format.source_format} to [#{format.target_formats.join(', ')}]")
 ## Licensing
 GroupDocs.Conversion Cloud Ruby SDK licensed under [MIT License](LICENSE).
 
-[Home](https://www.groupdocs.cloud/) | [Product Page](https://products.groupdocs.cloud/conversion/ruby) | [Docs](https://docs.groupdocs.cloud/conversion/) | [Demos](https://products.groupdocs.app/conversion/family) | [API Reference](https://apireference.groupdocs.cloud/conversion/) | [Examples](https://github.com/groupdocs-conversion-cloud/groupdocs-conversion-cloud-ruby-samples) | [Blog](https://blog.groupdocs.cloud/category/conversion/) | [Free Support](https://forum.groupdocs.cloud/c/conversion) | [Free Trial](https://purchase.groupdocs.cloud/trial)
+## Resources
++ [**Website**](https://www.groupdocs.cloud)
++ [**Product Home**](https://products.groupdocs.cloud/conversion)
++ [**Documentation**](https://docs.groupdocs.cloud/display/conversioncloud/Home)
++ [**Free Support Forum**](https://forum.groupdocs.cloud/c/conversion)
++ [**Blog**](https://blog.groupdocs.cloud/category/conversion)
+
+## Contact Us
+Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.groupdocs.cloud/c/conversion).

@@ -117,6 +117,73 @@ module GroupDocsConversionCloud
     end
 
 
+    # Converts input document file to format specified
+    # 
+    # @param request convert_document_direct_request
+    # @return [File]
+    def convert_document_direct(request)
+      data, _status_code, _headers = convert_document_direct_with_http_info(request)
+      data
+    end
+
+    # Converts input document file to format specified
+    # 
+    # @param request convert_document_direct_request
+    # @return [Array<(File, Fixnum, Hash)>]
+    # File data, response status code and response headers
+    def convert_document_direct_with_http_info(request)
+      raise ArgumentError, 'Incorrect request type' unless request.is_a? ConvertDocumentDirectRequest
+
+      @api_client.config.logger.debug 'Calling API: ConvertApi.convert_document_direct ...' if @api_client.config.debugging
+      # verify the required parameter 'format' is set
+      raise ArgumentError, 'Missing the required parameter format when calling ConvertApi.convert_document_direct' if @api_client.config.client_side_validation && request.format.nil?
+      # verify the required parameter 'file' is set
+      raise ArgumentError, 'Missing the required parameter file when calling ConvertApi.convert_document_direct' if @api_client.config.client_side_validation && request.file.nil?
+      # resource path
+      local_var_path = '/conversion'
+
+      # query parameters
+      query_params = {}
+      query_params[downcase_first_letter('format')] = request.format
+
+      if local_var_path.include? ('{' + downcase_first_letter('fromPage') + '}')
+        local_var_path = local_var_path.sub('{' + downcase_first_letter('fromPage') + '}', request.from_page.to_s)
+      else
+        query_params[downcase_first_letter('fromPage')] = request.from_page unless request.from_page.nil?
+      end
+      if local_var_path.include? ('{' + downcase_first_letter('pagesCount') + '}')
+        local_var_path = local_var_path.sub('{' + downcase_first_letter('pagesCount') + '}', request.pages_count.to_s)
+      else
+        query_params[downcase_first_letter('pagesCount')] = request.pages_count unless request.pages_count.nil?
+      end
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data'])
+
+      # form parameters
+      form_params = {}
+      form_params[downcase_first_letter('File')] = request.file
+
+      # http body (model)
+      post_body = nil
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+                                                        header_params: header_params,
+                                                        query_params: query_params,
+                                                        form_params: form_params,
+                                                        body: post_body,
+                                                        access_token: get_access_token,
+                                                        return_type: 'File')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called:
+        ConvertApi#convert_document_direct\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      [data, status_code, headers]
+    end
+
     #
     # Helper method to convert first letter to downcase
     #
@@ -213,6 +280,63 @@ module GroupDocsConversionCloud
         # @param convert_settings 
         def initialize(convert_settings)
            self.convert_settings = convert_settings
+        end
+  end
+end
+ #
+ # --------------------------------------------------------------------------------------------------------------------
+ # <copyright company="Aspose Pty Ltd" file="convert_document_direct_request.rb">
+ #   Copyright (c) 2003-2020 Aspose Pty Ltd
+ # </copyright>
+ # <summary>
+ #  Permission is hereby granted, free of charge, to any person obtaining a copy
+ #  of this software and associated documentation files (the "Software"), to deal
+ #  in the Software without restriction, including without limitation the rights
+ #  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ #  copies of the Software, and to permit persons to whom the Software is
+ #  furnished to do so, subject to the following conditions:
+ # 
+ #  The above copyright notice and this permission notice shall be included in all
+ #  copies or substantial portions of the Software.
+ # 
+ #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ #  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ #  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ #  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ #  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ #  SOFTWARE.
+ # </summary>
+ # --------------------------------------------------------------------------------------------------------------------
+ #
+
+module GroupDocsConversionCloud
+
+  #
+  # Request model for convert_document_direct operation.
+  #
+  class ConvertDocumentDirectRequest
+
+        # Requested conversion format
+        attr_accessor :format
+        # Input file to convert
+        attr_accessor :file
+        # Page start conversion from
+        attr_accessor :from_page
+        # Number of pages to convert
+        attr_accessor :pages_count
+	
+        #
+        # Initializes a new instance.
+        # @param format Requested conversion format
+        # @param file Input file to convert
+        # @param from_page Page start conversion from
+        # @param pages_count Number of pages to convert
+        def initialize(format, file, from_page = nil, pages_count = nil)
+           self.format = format
+           self.file = file
+           self.from_page = from_page
+           self.pages_count = pages_count
         end
   end
 end

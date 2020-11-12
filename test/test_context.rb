@@ -65,18 +65,18 @@ module GroupDocsConversionCloud
         @folder_api.delete_folder request
       end
 
+      def get_test_path
+        "test\\test_files\\"
+      end
+
       def upload_test_files
         unless @@test_files_uploaded then
-          test_file_path = "test\\test_files\\"
-
           TestFile.test_files_list.each do |test_file|
-
             exist_request = ObjectExistsRequest.new(test_file.path)
             exist_response = @storage_api.object_exists(exist_request)            
-            
             if !exist_response.exists then
               @storage_api.config.logger.debug "Uploading: " + test_file.path
-              file = File.open(test_file_path + test_file.path, "r")
+              file = File.open(get_test_path() + test_file.path, "r")
               upload_request = UploadFileRequest.new test_file.path, file
               @file_api.upload_file(upload_request)
             end
