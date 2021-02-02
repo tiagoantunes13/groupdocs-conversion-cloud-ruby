@@ -66,11 +66,13 @@ gem "groupdocs_conversion_cloud", "~> 20.11"
 # Get your application information from https://dashboard.groupdocs.cloud
 require 'groupdocs_conversion_cloud'
 
-$app_sid = "XXXX-XXXX-XXXX-XXXX" 
-$app_key = "XXXXXXXXXXXXXXXX"
+# Get Client Id and Client Secret from https://dashboard.groupdocs.cloud
+$my_client_id = ""
+$my_client_secret = ""
 
-# Create necessary API instances
-apiInstance = GroupDocsConversionCloud::ConvertApi.from_keys($app_sid, $app_key)
+# Create instance of the API
+$configuration = GroupDocsConversionCloud::Configuration.new($my_client_id, $my_client_secret)
+apiInstance = GroupDocsConversionCloud::ConvertApi.from_config($configuration)
 
 # Prepare convert settings
 settings = GroupDocsConversionCloud::ConvertSettings.new
