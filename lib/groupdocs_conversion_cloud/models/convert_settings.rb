@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="convert_settings.rb">
- #   Copyright (c) 2003-2020 Aspose Pty Ltd
+ #   Copyright (c) 2003-2021 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -49,6 +49,9 @@ module GroupDocsConversionCloud
     # Gets or sets converted file save path
     attr_accessor :output_path
 
+    # The path to directory containing custom fonts in storage
+    attr_accessor :fonts_path
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -57,7 +60,8 @@ module GroupDocsConversionCloud
         :'format' => :'Format',
         :'load_options' => :'LoadOptions',
         :'convert_options' => :'ConvertOptions',
-        :'output_path' => :'OutputPath'
+        :'output_path' => :'OutputPath',
+        :'fonts_path' => :'FontsPath'
       }
     end
 
@@ -69,7 +73,8 @@ module GroupDocsConversionCloud
         :'format' => :'String',
         :'load_options' => :'LoadOptions',
         :'convert_options' => :'ConvertOptions',
-        :'output_path' => :'String'
+        :'output_path' => :'String',
+        :'fonts_path' => :'String'
       }
     end
 
@@ -103,6 +108,10 @@ module GroupDocsConversionCloud
 
       if attributes.key?(:'OutputPath')
         self.output_path = attributes[:'OutputPath']
+      end
+
+      if attributes.key?(:'FontsPath')
+        self.fonts_path = attributes[:'FontsPath']
       end
 
     end
@@ -178,7 +187,8 @@ module GroupDocsConversionCloud
           format == other.format &&
           load_options == other.load_options &&
           convert_options == other.convert_options &&
-          output_path == other.output_path
+          output_path == other.output_path &&
+          fonts_path == other.fonts_path
     end
 
     # @see the `==` method
@@ -190,7 +200,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [storage_name, file_path, format, load_options, convert_options, output_path].hash
+      [storage_name, file_path, format, load_options, convert_options, output_path, fonts_path].hash
     end
 
     # Downcases first letter.

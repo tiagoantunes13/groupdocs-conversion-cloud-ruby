@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="watermark_options.rb">
- #   Copyright (c) 2003-2020 Aspose Pty Ltd
+ #   Copyright (c) 2003-2021 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -40,6 +40,12 @@ module GroupDocsConversionCloud
     # Watermark font name if text watermark is applied
     attr_accessor :font_size
 
+    # Watermark font bold style if text watermark is applied
+    attr_accessor :bold
+
+    # Watermark font italic style if text watermark is applied
+    attr_accessor :italic
+
     # Watermark font color if text watermark is applied
     attr_accessor :color
 
@@ -73,6 +79,8 @@ module GroupDocsConversionCloud
         :'text' => :'Text',
         :'font_name' => :'FontName',
         :'font_size' => :'FontSize',
+        :'bold' => :'Bold',
+        :'italic' => :'Italic',
         :'color' => :'Color',
         :'width' => :'Width',
         :'height' => :'Height',
@@ -91,6 +99,8 @@ module GroupDocsConversionCloud
         :'text' => :'String',
         :'font_name' => :'String',
         :'font_size' => :'Integer',
+        :'bold' => :'BOOLEAN',
+        :'italic' => :'BOOLEAN',
         :'color' => :'String',
         :'width' => :'Integer',
         :'height' => :'Integer',
@@ -121,6 +131,14 @@ module GroupDocsConversionCloud
 
       if attributes.key?(:'FontSize')
         self.font_size = attributes[:'FontSize']
+      end
+
+      if attributes.key?(:'Bold')
+        self.bold = attributes[:'Bold']
+      end
+
+      if attributes.key?(:'Italic')
+        self.italic = attributes[:'Italic']
       end
 
       if attributes.key?(:'Color')
@@ -169,6 +187,14 @@ module GroupDocsConversionCloud
         invalid_properties.push("invalid value for 'font_size', font_size cannot be nil.")
       end
 
+      if @bold.nil?
+        invalid_properties.push("invalid value for 'bold', bold cannot be nil.")
+      end
+
+      if @italic.nil?
+        invalid_properties.push("invalid value for 'italic', italic cannot be nil.")
+      end
+
       if @width.nil?
         invalid_properties.push("invalid value for 'width', width cannot be nil.")
       end
@@ -204,6 +230,8 @@ module GroupDocsConversionCloud
     # @return true if the model is valid
     def valid?
       return false if @font_size.nil?
+      return false if @bold.nil?
+      return false if @italic.nil?
       return false if @width.nil?
       return false if @height.nil?
       return false if @top.nil?
@@ -222,6 +250,8 @@ module GroupDocsConversionCloud
           text == other.text &&
           font_name == other.font_name &&
           font_size == other.font_size &&
+          bold == other.bold &&
+          italic == other.italic &&
           color == other.color &&
           width == other.width &&
           height == other.height &&
@@ -242,7 +272,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [text, font_name, font_size, color, width, height, top, left, rotation_angle, transparency, background, image].hash
+      [text, font_name, font_size, bold, italic, color, width, height, top, left, rotation_angle, transparency, background, image].hash
     end
 
     # Downcases first letter.
