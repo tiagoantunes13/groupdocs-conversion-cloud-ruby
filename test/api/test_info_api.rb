@@ -53,5 +53,13 @@ module GroupDocsConversionCloud
       assert_equal 4, response.page_count
     end
 
+    def test_GetInfoReturnsFileNotFound
+      request = GetDocumentMetadataRequest.new(TestFile.not_exist.path)
+      error = assert_raises ApiError do
+        @info_api.get_document_metadata(request)
+      end
+      assert_equal true, error.message.include?("AmazonS3 Storage exception: The specified key does not exist.")
+    end        
+
   end
 end
