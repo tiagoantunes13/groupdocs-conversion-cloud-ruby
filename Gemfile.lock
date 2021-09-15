@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    groupdocs_conversion_cloud (21.4.1)
+    groupdocs_conversion_cloud (21.9)
       addressable (~> 2.5.0, >= 2.5.0)
       faraday (~> 0.14.0)
 
