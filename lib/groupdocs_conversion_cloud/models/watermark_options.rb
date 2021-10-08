@@ -73,6 +73,9 @@ module GroupDocsConversionCloud
     # Image watermark
     attr_accessor :image
 
+    # Auto scale the watermark. If the value is true the font size and the position is automatically calculated to fit the page size.
+    attr_accessor :auto_align
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -89,7 +92,8 @@ module GroupDocsConversionCloud
         :'rotation_angle' => :'RotationAngle',
         :'transparency' => :'Transparency',
         :'background' => :'Background',
-        :'image' => :'Image'
+        :'image' => :'Image',
+        :'auto_align' => :'AutoAlign'
       }
     end
 
@@ -109,7 +113,8 @@ module GroupDocsConversionCloud
         :'rotation_angle' => :'Integer',
         :'transparency' => :'Float',
         :'background' => :'BOOLEAN',
-        :'image' => :'String'
+        :'image' => :'String',
+        :'auto_align' => :'BOOLEAN'
       }
     end
 
@@ -177,6 +182,10 @@ module GroupDocsConversionCloud
         self.image = attributes[:'Image']
       end
 
+      if attributes.key?(:'AutoAlign')
+        self.auto_align = attributes[:'AutoAlign']
+      end
+
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -223,6 +232,10 @@ module GroupDocsConversionCloud
         invalid_properties.push("invalid value for 'background', background cannot be nil.")
       end
 
+      if @auto_align.nil?
+        invalid_properties.push("invalid value for 'auto_align', auto_align cannot be nil.")
+      end
+
       return invalid_properties
     end
 
@@ -239,6 +252,7 @@ module GroupDocsConversionCloud
       return false if @rotation_angle.nil?
       return false if @transparency.nil?
       return false if @background.nil?
+      return false if @auto_align.nil?
       return true
     end
 
@@ -260,7 +274,8 @@ module GroupDocsConversionCloud
           rotation_angle == other.rotation_angle &&
           transparency == other.transparency &&
           background == other.background &&
-          image == other.image
+          image == other.image &&
+          auto_align == other.auto_align
     end
 
     # @see the `==` method
@@ -272,7 +287,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [text, font_name, font_size, bold, italic, color, width, height, top, left, rotation_angle, transparency, background, image].hash
+      [text, font_name, font_size, bold, italic, color, width, height, top, left, rotation_angle, transparency, background, image, auto_align].hash
     end
 
     # Downcases first letter.

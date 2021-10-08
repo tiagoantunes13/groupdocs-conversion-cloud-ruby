@@ -58,8 +58,32 @@ module GroupDocsConversionCloud
     # Watermark specific options
     attr_accessor :watermark_options
 
+    # Recognition mode when converting from pdf
+    attr_accessor :pdf_recognition_mode
+
     # Specifies whether the keywords for \"old readers\" are written to RTF or not. This can significantly affect the size of the RTF document. Default is False.
     attr_accessor :export_images_for_old_readers
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -73,6 +97,7 @@ module GroupDocsConversionCloud
         :'password' => :'Password',
         :'zoom' => :'Zoom',
         :'watermark_options' => :'WatermarkOptions',
+        :'pdf_recognition_mode' => :'PdfRecognitionMode',
         :'export_images_for_old_readers' => :'ExportImagesForOldReaders'
       }
     end
@@ -89,6 +114,7 @@ module GroupDocsConversionCloud
         :'password' => :'String',
         :'zoom' => :'Integer',
         :'watermark_options' => :'WatermarkOptions',
+        :'pdf_recognition_mode' => :'String',
         :'export_images_for_old_readers' => :'BOOLEAN'
       }
     end
@@ -139,6 +165,10 @@ module GroupDocsConversionCloud
         self.watermark_options = attributes[:'WatermarkOptions']
       end
 
+      if attributes.key?(:'PdfRecognitionMode')
+        self.pdf_recognition_mode = attributes[:'PdfRecognitionMode']
+      end
+
       if attributes.key?(:'ExportImagesForOldReaders')
         self.export_images_for_old_readers = attributes[:'ExportImagesForOldReaders']
       end
@@ -173,6 +203,10 @@ module GroupDocsConversionCloud
         invalid_properties.push("invalid value for 'zoom', zoom cannot be nil.")
       end
 
+      if @pdf_recognition_mode.nil?
+        invalid_properties.push("invalid value for 'pdf_recognition_mode', pdf_recognition_mode cannot be nil.")
+      end
+
       if @export_images_for_old_readers.nil?
         invalid_properties.push("invalid value for 'export_images_for_old_readers', export_images_for_old_readers cannot be nil.")
       end
@@ -189,8 +223,25 @@ module GroupDocsConversionCloud
       return false if @height.nil?
       return false if @dpi.nil?
       return false if @zoom.nil?
+      return false if @pdf_recognition_mode.nil?
+      pdf_recognition_mode_validator = EnumAttributeValidator.new('String', ["Textbox", "Flow"])
+      return false unless pdf_recognition_mode_validator.valid?(@pdf_recognition_mode)
       return false if @export_images_for_old_readers.nil?
       return true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] pdf_recognition_mode Object to be assigned
+    def pdf_recognition_mode=(pdf_recognition_mode)
+      validator = EnumAttributeValidator.new('String', ["Textbox", "Flow"])
+      if pdf_recognition_mode.to_i == 0
+        unless validator.valid?(pdf_recognition_mode)
+          raise ArgumentError, "invalid value for 'pdf_recognition_mode', must be one of #{validator.allowable_values}."
+        end
+        @pdf_recognition_mode = pdf_recognition_mode
+      else
+        @pdf_recognition_mode = validator.allowable_values[pdf_recognition_mode.to_i]
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -207,6 +258,7 @@ module GroupDocsConversionCloud
           password == other.password &&
           zoom == other.zoom &&
           watermark_options == other.watermark_options &&
+          pdf_recognition_mode == other.pdf_recognition_mode &&
           export_images_for_old_readers == other.export_images_for_old_readers
     end
 
@@ -219,7 +271,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [from_page, pages_count, pages, width, height, dpi, password, zoom, watermark_options, export_images_for_old_readers].hash
+      [from_page, pages_count, pages, width, height, dpi, password, zoom, watermark_options, pdf_recognition_mode, export_images_for_old_readers].hash
     end
 
     # Downcases first letter.
