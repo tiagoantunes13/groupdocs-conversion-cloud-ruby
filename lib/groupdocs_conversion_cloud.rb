@@ -30,6 +30,7 @@ require_relative 'groupdocs_conversion_cloud/version'
 require_relative 'groupdocs_conversion_cloud/configuration'
 
 # Models
+require_relative 'groupdocs_conversion_cloud/models/consumption_result'
 require_relative 'groupdocs_conversion_cloud/models/convert_options'
 require_relative 'groupdocs_conversion_cloud/models/convert_settings'
 require_relative 'groupdocs_conversion_cloud/models/disc_usage'
@@ -206,4 +207,5 @@ require_relative 'groupdocs_conversion_cloud/api/convert_api'
 require_relative 'groupdocs_conversion_cloud/api/file_api'
 require_relative 'groupdocs_conversion_cloud/api/folder_api'
 require_relative 'groupdocs_conversion_cloud/api/info_api'
+require_relative 'groupdocs_conversion_cloud/api/license_api'
 require_relative 'groupdocs_conversion_cloud/api/storage_api'
