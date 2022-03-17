@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="pdf_load_options.rb">
- #   Copyright (c) 2003-2021 Aspose Pty Ltd
+ #   Copyright (c) 2003-2022 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,6 +31,9 @@ module GroupDocsConversionCloud
   # Pdf document load options
   class PdfLoadOptions
 
+    # The format of input file, (\"docx\", for example). This field must be filled with correct input file format when using ConvertDirect method, which accept input file as binary stream, and, because of that, API can correctly handle LoadOptions. In regular conversion, the input file format taken from the input file name and this field ignored.
+    attr_accessor :format
+
     # Remove embedded files
     attr_accessor :remove_embedded_files
 
@@ -46,6 +49,7 @@ module GroupDocsConversionCloud
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'format' => :'Format',
         :'remove_embedded_files' => :'RemoveEmbeddedFiles',
         :'password' => :'Password',
         :'hide_pdf_annotations' => :'HidePdfAnnotations',
@@ -56,6 +60,7 @@ module GroupDocsConversionCloud
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'format' => :'String',
         :'remove_embedded_files' => :'BOOLEAN',
         :'password' => :'String',
         :'hide_pdf_annotations' => :'BOOLEAN',
@@ -70,6 +75,10 @@ module GroupDocsConversionCloud
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.key?(:'Format')
+        self.format = attributes[:'Format']
+      end
 
       if attributes.key?(:'RemoveEmbeddedFiles')
         self.remove_embedded_files = attributes[:'RemoveEmbeddedFiles']
@@ -122,6 +131,7 @@ module GroupDocsConversionCloud
     def ==(other)
       return true if self.equal?(other)
       self.class == other.class &&
+          format == other.format &&
           remove_embedded_files == other.remove_embedded_files &&
           password == other.password &&
           hide_pdf_annotations == other.hide_pdf_annotations &&
@@ -137,7 +147,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [remove_embedded_files, password, hide_pdf_annotations, flatten_all_fields].hash
+      [format, remove_embedded_files, password, hide_pdf_annotations, flatten_all_fields].hash
     end
 
     # Downcases first letter.

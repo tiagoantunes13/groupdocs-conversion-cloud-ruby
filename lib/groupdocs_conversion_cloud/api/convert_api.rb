@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------------
 # <copyright company="Aspose Pty Ltd" file="convert.rb">
-#   Copyright (c) 2003-2021 Aspose Pty Ltd
+#   Copyright (c) 2003-2022 Aspose Pty Ltd
 # </copyright>
 # <summary>
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -167,6 +167,8 @@ module GroupDocsConversionCloud
       # form parameters
       form_params = {}
       form_params[downcase_first_letter('File')] = request.file
+      form_params[downcase_first_letter('loadOptions')] = @api_client.object_to_http_body(request.load_options) unless request.load_options.nil?
+      form_params[downcase_first_letter('convertOptions')] = @api_client.object_to_http_body(request.convert_options) unless request.convert_options.nil?
 
       # http body (model)
       post_body = nil
@@ -241,7 +243,7 @@ end
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="convert_document_request.rb">
- #   Copyright (c) 2003-2021 Aspose Pty Ltd
+ #   Copyright (c) 2003-2022 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -286,7 +288,7 @@ end
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="convert_document_direct_request.rb">
- #   Copyright (c) 2003-2021 Aspose Pty Ltd
+ #   Copyright (c) 2003-2022 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -325,6 +327,10 @@ module GroupDocsConversionCloud
         attr_accessor :from_page
         # Number of pages to convert
         attr_accessor :pages_count
+        # Input file load options
+        attr_accessor :load_options
+        # Conversion options
+        attr_accessor :convert_options
 	
         #
         # Initializes a new instance.
@@ -332,11 +338,15 @@ module GroupDocsConversionCloud
         # @param file Input file to convert
         # @param from_page Page start conversion from
         # @param pages_count Number of pages to convert
-        def initialize(format, file, from_page = nil, pages_count = nil)
+        # @param load_options Input file load options
+        # @param convert_options Conversion options
+        def initialize(format, file, from_page = nil, pages_count = nil, load_options = nil, convert_options = nil)
            self.format = format
            self.file = file
            self.from_page = from_page
            self.pages_count = pages_count
+           self.load_options = load_options
+           self.convert_options = convert_options
         end
   end
 end

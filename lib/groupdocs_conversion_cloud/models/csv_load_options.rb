@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="csv_load_options.rb">
- #   Copyright (c) 2003-2021 Aspose Pty Ltd
+ #   Copyright (c) 2003-2022 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,6 +31,9 @@ module GroupDocsConversionCloud
   # Csv document load options
   class CsvLoadOptions
 
+    # The format of input file, (\"docx\", for example). This field must be filled with correct input file format when using ConvertDirect method, which accept input file as binary stream, and, because of that, API can correctly handle LoadOptions. In regular conversion, the input file format taken from the input file name and this field ignored.
+    attr_accessor :format
+
     # Delimiter of a Csv file
     attr_accessor :separator
 
@@ -52,6 +55,7 @@ module GroupDocsConversionCloud
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'format' => :'Format',
         :'separator' => :'Separator',
         :'is_multi_encoded' => :'IsMultiEncoded',
         :'has_formula' => :'HasFormula',
@@ -64,6 +68,7 @@ module GroupDocsConversionCloud
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'format' => :'String',
         :'separator' => :'String',
         :'is_multi_encoded' => :'BOOLEAN',
         :'has_formula' => :'BOOLEAN',
@@ -80,6 +85,10 @@ module GroupDocsConversionCloud
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.key?(:'Format')
+        self.format = attributes[:'Format']
+      end
 
       if attributes.key?(:'Separator')
         self.separator = attributes[:'Separator']
@@ -150,6 +159,7 @@ module GroupDocsConversionCloud
     def ==(other)
       return true if self.equal?(other)
       self.class == other.class &&
+          format == other.format &&
           separator == other.separator &&
           is_multi_encoded == other.is_multi_encoded &&
           has_formula == other.has_formula &&
@@ -167,7 +177,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [separator, is_multi_encoded, has_formula, convert_numeric_data, convert_date_time_data, encoding].hash
+      [format, separator, is_multi_encoded, has_formula, convert_numeric_data, convert_date_time_data, encoding].hash
     end
 
     # Downcases first letter.

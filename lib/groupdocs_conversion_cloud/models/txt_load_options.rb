@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="txt_load_options.rb">
- #   Copyright (c) 2003-2021 Aspose Pty Ltd
+ #   Copyright (c) 2003-2022 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,6 +30,9 @@ require 'date'
 module GroupDocsConversionCloud
   # Txt document load options
   class TxtLoadOptions
+
+    # The format of input file, (\"docx\", for example). This field must be filled with correct input file format when using ConvertDirect method, which accept input file as binary stream, and, because of that, API can correctly handle LoadOptions. In regular conversion, the input file format taken from the input file name and this field ignored.
+    attr_accessor :format
 
     # Allows to specify how numbered list items are recognized when plain text document is converted. The default value is true.
     attr_accessor :detect_numbering_with_whitespaces
@@ -67,6 +70,7 @@ module GroupDocsConversionCloud
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'format' => :'Format',
         :'detect_numbering_with_whitespaces' => :'DetectNumberingWithWhitespaces',
         :'trailing_spaces_options' => :'TrailingSpacesOptions',
         :'leading_spaces_options' => :'LeadingSpacesOptions',
@@ -77,6 +81,7 @@ module GroupDocsConversionCloud
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'format' => :'String',
         :'detect_numbering_with_whitespaces' => :'BOOLEAN',
         :'trailing_spaces_options' => :'String',
         :'leading_spaces_options' => :'String',
@@ -91,6 +96,10 @@ module GroupDocsConversionCloud
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.key?(:'Format')
+        self.format = attributes[:'Format']
+      end
 
       if attributes.key?(:'DetectNumberingWithWhitespaces')
         self.detect_numbering_with_whitespaces = attributes[:'DetectNumberingWithWhitespaces']
@@ -175,6 +184,7 @@ module GroupDocsConversionCloud
     def ==(other)
       return true if self.equal?(other)
       self.class == other.class &&
+          format == other.format &&
           detect_numbering_with_whitespaces == other.detect_numbering_with_whitespaces &&
           trailing_spaces_options == other.trailing_spaces_options &&
           leading_spaces_options == other.leading_spaces_options &&
@@ -190,7 +200,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [detect_numbering_with_whitespaces, trailing_spaces_options, leading_spaces_options, encoding].hash
+      [format, detect_numbering_with_whitespaces, trailing_spaces_options, leading_spaces_options, encoding].hash
     end
 
     # Downcases first letter.

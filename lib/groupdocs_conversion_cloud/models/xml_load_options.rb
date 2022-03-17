@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="xml_load_options.rb">
- #   Copyright (c) 2003-2021 Aspose Pty Ltd
+ #   Copyright (c) 2003-2022 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,12 +31,16 @@ module GroupDocsConversionCloud
   # XML document load options
   class XmlLoadOptions
 
+    # The format of input file, (\"docx\", for example). This field must be filled with correct input file format when using ConvertDirect method, which accept input file as binary stream, and, because of that, API can correctly handle LoadOptions. In regular conversion, the input file format taken from the input file name and this field ignored.
+    attr_accessor :format
+
     # XSL document content to convert XML-FO using XSL
     attr_accessor :xsl_fo
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'format' => :'Format',
         :'xsl_fo' => :'XslFo'
       }
     end
@@ -44,6 +48,7 @@ module GroupDocsConversionCloud
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'format' => :'String',
         :'xsl_fo' => :'String'
       }
     end
@@ -55,6 +60,10 @@ module GroupDocsConversionCloud
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.key?(:'Format')
+        self.format = attributes[:'Format']
+      end
 
       if attributes.key?(:'XslFo')
         self.xsl_fo = attributes[:'XslFo']
@@ -96,6 +105,7 @@ module GroupDocsConversionCloud
     def ==(other)
       return true if self.equal?(other)
       self.class == other.class &&
+          format == other.format &&
           xsl_fo == other.xsl_fo
     end
 
@@ -108,7 +118,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [xsl_fo].hash
+      [format, xsl_fo].hash
     end
 
     # Downcases first letter.

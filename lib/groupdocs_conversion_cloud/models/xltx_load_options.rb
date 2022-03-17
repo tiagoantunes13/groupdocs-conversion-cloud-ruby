@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="xltx_load_options.rb">
- #   Copyright (c) 2003-2021 Aspose Pty Ltd
+ #   Copyright (c) 2003-2022 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,6 +30,9 @@ require 'date'
 module GroupDocsConversionCloud
   # Xltx load options
   class XltxLoadOptions
+
+    # The format of input file, (\"docx\", for example). This field must be filled with correct input file format when using ConvertDirect method, which accept input file as binary stream, and, because of that, API can correctly handle LoadOptions. In regular conversion, the input file format taken from the input file name and this field ignored.
+    attr_accessor :format
 
     # Default font for Cells document. The following font will be used if a font is missing.
     attr_accessor :default_font
@@ -61,6 +64,7 @@ module GroupDocsConversionCloud
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'format' => :'Format',
         :'default_font' => :'DefaultFont',
         :'font_substitutes' => :'FontSubstitutes',
         :'show_grid_lines' => :'ShowGridLines',
@@ -76,6 +80,7 @@ module GroupDocsConversionCloud
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'format' => :'String',
         :'default_font' => :'String',
         :'font_substitutes' => :'Hash<String, String>',
         :'show_grid_lines' => :'BOOLEAN',
@@ -95,6 +100,10 @@ module GroupDocsConversionCloud
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.key?(:'Format')
+        self.format = attributes[:'Format']
+      end
 
       if attributes.key?(:'DefaultFont')
         self.default_font = attributes[:'DefaultFont']
@@ -179,6 +188,7 @@ module GroupDocsConversionCloud
     def ==(other)
       return true if self.equal?(other)
       self.class == other.class &&
+          format == other.format &&
           default_font == other.default_font &&
           font_substitutes == other.font_substitutes &&
           show_grid_lines == other.show_grid_lines &&
@@ -199,7 +209,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [default_font, font_substitutes, show_grid_lines, show_hidden_sheets, one_page_per_sheet, convert_range, skip_empty_rows_and_columns, password, hide_comments].hash
+      [format, default_font, font_substitutes, show_grid_lines, show_hidden_sheets, one_page_per_sheet, convert_range, skip_empty_rows_and_columns, password, hide_comments].hash
     end
 
     # Downcases first letter.

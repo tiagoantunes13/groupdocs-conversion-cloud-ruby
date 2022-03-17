@@ -1,7 +1,7 @@
  #
  # --------------------------------------------------------------------------------------------------------------------
  # <copyright company="Aspose Pty Ltd" file="mht_load_options.rb">
- #   Copyright (c) 2003-2021 Aspose Pty Ltd
+ #   Copyright (c) 2003-2022 Aspose Pty Ltd
  # </copyright>
  # <summary>
  #  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,6 +30,9 @@ require 'date'
 module GroupDocsConversionCloud
   # Mht load options
   class MhtLoadOptions
+
+    # The format of input file, (\"docx\", for example). This field must be filled with correct input file format when using ConvertDirect method, which accept input file as binary stream, and, because of that, API can correctly handle LoadOptions. In regular conversion, the input file format taken from the input file name and this field ignored.
+    attr_accessor :format
 
     # Option to display or hide the email header. Default: true
     attr_accessor :display_header
@@ -64,6 +67,7 @@ module GroupDocsConversionCloud
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'format' => :'Format',
         :'display_header' => :'DisplayHeader',
         :'display_from_email_address' => :'DisplayFromEmailAddress',
         :'display_email_address' => :'DisplayEmailAddress',
@@ -80,6 +84,7 @@ module GroupDocsConversionCloud
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'format' => :'String',
         :'display_header' => :'BOOLEAN',
         :'display_from_email_address' => :'BOOLEAN',
         :'display_email_address' => :'BOOLEAN',
@@ -100,6 +105,10 @@ module GroupDocsConversionCloud
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.key?(:'Format')
+        self.format = attributes[:'Format']
+      end
 
       if attributes.key?(:'DisplayHeader')
         self.display_header = attributes[:'DisplayHeader']
@@ -203,6 +212,7 @@ module GroupDocsConversionCloud
     def ==(other)
       return true if self.equal?(other)
       self.class == other.class &&
+          format == other.format &&
           display_header == other.display_header &&
           display_from_email_address == other.display_from_email_address &&
           display_email_address == other.display_email_address &&
@@ -224,7 +234,7 @@ module GroupDocsConversionCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [display_header, display_from_email_address, display_email_address, display_to_email_address, display_cc_email_address, display_bcc_email_address, time_zone_offset, convert_attachments, field_labels, preserve_original_date].hash
+      [format, display_header, display_from_email_address, display_email_address, display_to_email_address, display_cc_email_address, display_bcc_email_address, time_zone_offset, convert_attachments, field_labels, preserve_original_date].hash
     end
 
     # Downcases first letter.

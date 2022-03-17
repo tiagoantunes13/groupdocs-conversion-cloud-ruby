@@ -1,7 +1,7 @@
 #
 # --------------------------------------------------------------------------------------------------------------------
 # <copyright company="Aspose Pty Ltd">
-#    Copyright (c) 2003-2021 Aspose Pty Ltd
+#    Copyright (c) 2003-2022 Aspose Pty Ltd
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -65,6 +65,22 @@ module GroupDocsConversionCloud
       file = File.open(get_test_path() + test_file.path, "r")
 
       request = ConvertDocumentDirectRequest.new format, file
+      
+      response = @convert_api.convert_document_direct(request)
+
+      assert_operator response.length, :>, 0  
+    end    
+
+    def test_convert_document_direct_opts
+      test_file = TestFile.password_protected_docx
+      format = "pdf"      
+      file = File.open(get_test_path() + test_file.path, "r")
+
+      load_options = DocxLoadOptions.new
+      load_options.format = "docx"
+      load_options.password = test_file.password
+
+      request = ConvertDocumentDirectRequest.new format, file, nil, nil, load_options
       
       response = @convert_api.convert_document_direct(request)
 
