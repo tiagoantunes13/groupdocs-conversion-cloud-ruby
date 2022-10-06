@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    groupdocs_conversion_cloud (22.3)
+    groupdocs_conversion_cloud (22.10)
       addressable (~> 2.5.0, >= 2.5.0)
       faraday (~> 0.14.0)
 
@@ -13,7 +13,7 @@ GEM
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
     minitest (5.11.3)
-    multipart-post (2.1.1)
+    multipart-post (2.2.3)
     public_suffix (3.1.1)
     rake (13.0.1)
 
