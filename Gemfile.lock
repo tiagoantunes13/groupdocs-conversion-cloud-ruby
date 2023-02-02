@@ -3,14 +3,14 @@ PATH
   specs:
     groupdocs_conversion_cloud (22.10)
       addressable (~> 2.8.0, >= 2.8.0)
-      faraday (~> 0.14.0)
+      faraday (~> 0.17.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
-    faraday (0.14.0)
+    faraday (0.17.4)
       multipart-post (>= 1.2, < 3)
     minitest (5.11.3)
     multipart-post (2.2.3)
